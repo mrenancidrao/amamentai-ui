@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Doadoras</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <p-dataTable [value]="doadoras" [paginator]="true" [rows]=15 [responsive]="true">
+          <p-column field="nome" header="Nome"></p-column>
+          <p-column field="endereco" header="Endereço"></p-column>
+          <p-column field="bairro" header="Bairro"></p-column>
+          <p-column field="usuario" header="Usuário"></p-column>
+          <p-column field="status" header="Status"></p-column>
+          <p-column styleClass="col-acao">
+              <ng-template pTemplate="body">
+                <button pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+                <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton label="Nova Doadora"></button>
+      </div>
+
+    </div>
+  </div>
+

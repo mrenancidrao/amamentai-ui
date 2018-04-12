@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Agendamentos</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Doadora</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="ui-g-12">
+      <label style="display:block">Data</label>
+      <input pInputText type="text" style="width: 95px">
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Pesquisar"></button>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <div class="ui-g-12">
+      <p-dataTable [value]="agendamentos" [paginator]="true" [rows]=15 [responsive]="true">
+        <p-column field="data" header="Data" styleClass="col-data"></p-column>
+        <p-column field="doadora" header="Doadora"></p-column>
+        <p-column field="objetivo" header="Objetivo"></p-column>
+        <p-column field="rota" header="Rota"></p-column>
+        <p-column field="status" header="Status" styleClass="col-status">
+            <ng-template let-agend="rowData" pTemplate="body">
+                <span [style.color]="agend.status === 'CONFIRMADO' ? 'green' :
+                                          agend.status === 'CANCELADO' ? 'red' :
+                                          agend.status === 'SOLICITADO' ? 'blue' :
+                                          'black'">{{agend.status}}</span>
+            </ng-template>
+        </p-column>
+        <p-column styleClass="col-acao">
+            <ng-template pTemplate="body">
+              <button pButton icon="fas fa-calendar-check" class="icon-calendar-check" pTooltip="Confirmar Agendamento" tooltipPosition="top"></button>
+              <button pButton icon="fas fa-calendar-times" class="icon-calendar-reject" pTooltip="Rejeitar Agendamento" tooltipPosition="top"></button>
+            </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton label="Novo Agendamento"></button>
+    </div>
+
+  </div>
+</div>
+
