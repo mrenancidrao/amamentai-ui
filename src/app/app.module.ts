@@ -1,3 +1,5 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +18,7 @@ import { AgendamentosPesquisaComponent } from './agendamentos-pesquisa/agendamen
 import { NavbarComponent } from './navbar/navbar.component';
 import { DoadorasPesquisaComponent } from './doadoras-pesquisa/doadoras-pesquisa.component';
 import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento-cadastro.component';
+import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.component';
 
 
 @NgModule({
@@ -24,9 +27,11 @@ import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento
     AgendamentosPesquisaComponent,
     NavbarComponent,
     DoadorasPesquisaComponent,
-    AgendamentoCadastroComponent
+    AgendamentoCadastroComponent,
+    DoadoraCadastroComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     TabViewModule,
     InputTextModule,

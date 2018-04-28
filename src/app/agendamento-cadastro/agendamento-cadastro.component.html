@@ -9,12 +9,12 @@
 
       <div class="ui-g-12 ui-fluid">
           <label>Doadora</label>
-          <p-dropdown [options]="doadoras" ></p-dropdown>
+          <p-dropdown [options]="doadoras" [filter]="true" [autoWidth]="false" placeholder="Selecione uma doadora" #doadora></p-dropdown>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Rota</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="rotas" [autoWidth]="false" placeholder="Selecione a rota" #rota></p-dropdown>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -24,7 +24,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Objetivo do Agendamento</label>
-          <input pInputText type="text">
+          <p-dropdown [options]="objetivos" [autoWidth]="false" placeholder="Selecione o objetivo do agendamento" #rota></p-dropdown>
       </div>
 
       <div class="ui-g-12">

@@ -1,0 +1,67 @@
+<div class="container">
+  <form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>
+          Nova Doadora
+        </h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Data de Nascimento</label>
+          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="true"></p-calendar>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Logradouro</label>
+        <input type="text" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Número</label>
+          <input type="text" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Complemento</label>
+        <input type="text" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Cidade</label>
+        <p-dropdown [options]="cidades" [autoWidth]="false" placeholder="Selecione uma cidade" #rota></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+          <label>Bairro</label>
+          <p-dropdown [options]="bairros" [autoWidth]="false" placeholder="Escolha um bairro" #rota></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>E-mail</label>
+        <input type="text" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Senha</label>
+        <input type="password" pInputText/>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+          <label>Confirmar Senha</label>
+          <input type="password" pInputText/>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" class="ui-button-info" label="Novo"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>
