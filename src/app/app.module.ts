@@ -19,6 +19,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DoadorasPesquisaComponent } from './doadoras-pesquisa/doadoras-pesquisa.component';
 import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento-cadastro.component';
 import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.component';
+import { FormsModule } from '@angular/forms';
+import { MessageComponent } from './message/message.component';
+import { AgendamentosGridComponent } from './agendamentos-grid/agendamentos-grid.component';
+import { DoadorasGridComponent } from './doadoras-grid/doadoras-grid.component';
 
 
 @NgModule({
@@ -28,7 +32,10 @@ import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.co
     NavbarComponent,
     DoadorasPesquisaComponent,
     AgendamentoCadastroComponent,
-    DoadoraCadastroComponent
+    DoadoraCadastroComponent,
+    MessageComponent,
+    AgendamentosGridComponent,
+    DoadorasGridComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -39,7 +46,8 @@ import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.co
     DataTableModule,
     TooltipModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

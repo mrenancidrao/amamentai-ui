@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form autocomplete="off">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>
@@ -8,18 +8,18 @@
       </div>
 
       <div class="ui-g-12 ui-fluid">
-          <label>Doadora</label>
-          <p-dropdown [options]="doadoras" [filter]="true" [autoWidth]="false" placeholder="Selecione uma doadora" #doadora></p-dropdown>
+          <label>Doadora {{ doadora.errors }}</label>
+          <p-dropdown [options]="doadoras" [filter]="true" [autoWidth]="false" placeholder="Selecione uma doadora" ngModel #doadora="ngModel" required></p-dropdown>
+      </div>
+      
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Data</label>
+          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="true" placeholder="Escolha uma data disponível"></p-calendar>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Rota</label>
         <p-dropdown [options]="rotas" [autoWidth]="false" placeholder="Selecione a rota" #rota></p-dropdown>
-      </div>
-
-      <div class="ui-g-6 ui-md-3 ui-fluid">
-          <label>Data</label>
-          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="true"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">

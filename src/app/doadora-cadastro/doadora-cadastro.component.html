@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form autocomplete="off">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>
@@ -9,52 +9,74 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
-        <input type="text" pInputText/>
-      </div>
+        <input type="text" pInputText name="nome" ngModel #nome="ngModel" required minlength="4"/>
 
+       <app-message [control]="nome" error="required" text="Informe um nome."></app-message>
+
+       <app-message [control]="nome" error="minlength" text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres."></app-message>
+      </div>
+      
       <div class="ui-g-12 ui-md-3 ui-fluid">
           <label>Data de Nascimento</label>
-          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="true"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" name="dataNascimento" [readonlyInput]="true" ngModel #dataNasc="ngModel" required></p-calendar>
+
+          <app-message [control]="dataNasc" error="required" text="Informe data de nascimento"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
-        <input type="text" pInputText/>
+        <input type="text" pInputText name="logradouro" ngModel #logradouro="ngModel" required/>
+
+        <app-message [control]="logradouro" error="required" text="Informe o logradouro"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
           <label>Número</label>
-          <input type="text" pInputText/>
+          <input type="text" pInputText name="numero" ngModel #numero="ngModel" required/>
+
+          <app-message [control]="numero" error="required" text="Informe o número"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Complemento</label>
-        <input type="text" pInputText/>
+        <input type="text" pInputText name="complemento"/>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Cidade</label>
-        <p-dropdown [options]="cidades" [autoWidth]="false" placeholder="Selecione uma cidade" #rota></p-dropdown>
+        <p-dropdown [options]="cidades" [filter]="true" name="cidade" [autoWidth]="false" placeholder="Selecione uma cidade" ngModel #cidade="ngModel" required></p-dropdown>
+
+        <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
           <label>Bairro</label>
-          <p-dropdown [options]="bairros" [autoWidth]="false" placeholder="Escolha um bairro" #rota></p-dropdown>
+          <p-dropdown [options]="bairros" [filter]="true" [autoWidth]="false" name="bairro" placeholder="Escolha um bairro" ngModel #bairro="ngModel" required></p-dropdown>
+
+          <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>E-mail</label>
-        <input type="text" pInputText/>
+        <input type="text" pInputText name="email" ngModel #email="ngModel" required/>
+
+        <app-message [control]="email" error="required" text="Informe o email"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Senha</label>
-        <input type="password" pInputText/>
+        <input type="password" pInputText name="senha" ngModel #senha="ngModel" required/>
+
+        <app-message [control]="senha" error="required" text="Informe a senha"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
           <label>Confirmar Senha</label>
-          <input type="password" pInputText/>
+          <input type="password" pInputText name="senhaConfirmacao" ngModel #senhaConfirmacao="ngModel" required/>
+
+          <app-message [control]="senhaConfirmacao" error="required" text="Confirme a senha digitada"></app-message>
       </div>
 
       <div class="ui-g-12">
