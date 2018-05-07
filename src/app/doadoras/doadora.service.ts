@@ -7,21 +7,20 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
-export class AgendamentoFiltro {
-  doadora: string;
-  dataAgenda: Date;
+export class DoadoraFiltro {
+  nome: string;
   pagina = 0;
   itensPorPagina = 5;
 }
 
 @Injectable()
-export class AgendamentoService {
+export class DoadoraService {
 
-  agendamentosUrl = 'http://localhost:8080/vAgenda';
+  DoadorasUrl = 'http://localhost:8080/doadora';
 
   constructor(private http: Http) { }
 
-  pesquisar(filtro: AgendamentoFiltro): Promise<any> {
+  pesquisar(filtro: DoadoraFiltro): Promise<any> {
     const params = new URLSearchParams();
     const headers = new Headers();
 
@@ -30,22 +29,18 @@ export class AgendamentoService {
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
 
-    if (filtro.doadora) {
-      params.set('doadora', filtro.doadora);
+    if (filtro.nome) {
+      params.set('doadora', filtro.nome);
     }
 
-    if (filtro.dataAgenda) {
-      params.set('dataAgenda', moment(filtro.dataAgenda).format('YYYY-MM-DD'));
-    }
-
-    return this.http.get(`${this.agendamentosUrl}`, { headers, search: params })
+    return this.http.get(`${this.DoadorasUrl}`, { headers, search: params })
      .toPromise()
      .then(response => {
        const responseJson = response.json();
-       const agendamentos = responseJson.content;
+       const Doadoras = responseJson.content;
 
        const resultado = {
-         agendamentos,
+         Doadoras,
          total: responseJson.totalElements
        };
 

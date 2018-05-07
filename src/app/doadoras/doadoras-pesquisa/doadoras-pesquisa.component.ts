@@ -1,3 +1,5 @@
+import { LazyLoadEvent } from 'primeng/components/common/api';
+import { DoadoraService, DoadoraFiltro } from './../doadora.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,21 +7,31 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './doadoras-pesquisa.component.html',
   styleUrls: ['./doadoras-pesquisa.component.css']
 })
-export class DoadorasPesquisaComponent {
+export class DoadorasPesquisaComponent implements OnInit {
 
-  doadoras = [
-    {
-      nome: 'DOADORA 1', endereco: 'RUA DA DOADORA 1', bairro: 'BAIRRO DOADORA 1', usuario: 'doadora1@gmail.com', status: 'ATIVO'
-    },
-    {
-      nome: 'DOADORA 2', endereco: 'RUA DA DOADORA 2', bairro: 'BAIRRO DOADORA 2', usuario: 'doadora2@gmail.com', status: 'ATIVO'
-    },
-    {
-      nome: 'DOADORA 3', endereco: 'RUA DA DOADORA 3', bairro: 'BAIRRO DOADORA 3', usuario: 'doadora3@gmail.com', status: 'ATIVO'
-    },
-    {
-      nome: 'DOADORA 4', endereco: 'RUA DA DOADORA 4', bairro: 'BAIRRO DOADORA 4', usuario: 'doadora4@gmail.com', status: 'ATIVO'
-    }
-  ];
+  totalRegistros = 0;
+  filtro = new DoadoraFiltro();
+  doadoras = [];
+
+  constructor(private doadoraService: DoadoraService) {  }
+
+  ngOnInit() {
+
+  }
+
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+
+    this.doadoraService.pesquisar(this.filtro)
+      .then(resultado => {
+        this.totalRegistros = resultado.total;
+        this.doadoras = resultado.doadoras;
+      });
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 
 }
