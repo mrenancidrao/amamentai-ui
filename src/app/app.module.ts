@@ -19,6 +19,8 @@ import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
+import { AgendamentoService } from './agendamentos/agendamento.service';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -29,13 +31,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    HttpModule,
 
     AgendamentosModule,
     DoadorasModule,
     CoreModule
 
   ],
-  providers: [],
+  providers: [AgendamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

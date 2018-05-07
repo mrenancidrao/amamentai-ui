@@ -2,7 +2,6 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
-import { AgendamentosGridComponent } from './agendamentos-grid/agendamentos-grid.component';
 import { AgendamentosPesquisaComponent } from './agendamentos-pesquisa/agendamentos-pesquisa.component';
 import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento-cadastro.component';
 import { NgModule } from '@angular/core';
@@ -27,8 +26,8 @@ import { ButtonModule } from 'primeng/components/button/button';
   ],
   declarations: [
     AgendamentoCadastroComponent,
-    AgendamentosPesquisaComponent,
-    AgendamentosGridComponent
+    AgendamentosPesquisaComponent
+    
   ],
   exports: [
     AgendamentoCadastroComponent,
