@@ -1,6 +1,6 @@
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { DoadoraService, DoadoraFiltro } from './../doadora.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-doadoras-pesquisa',
@@ -12,6 +12,7 @@ export class DoadorasPesquisaComponent implements OnInit {
   totalRegistros = 0;
   filtro = new DoadoraFiltro();
   doadoras = [];
+  @ViewChild('tabela') tabela;
 
   constructor(private doadoraService: DoadoraService) {  }
 
@@ -32,6 +33,13 @@ export class DoadorasPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.pesquisar(pagina);
+  }
+
+  excluir(doadora: any) {
+      this.doadoraService.excluir(doadora.id)
+      .then(() => {
+        this.tabela.first = 0;
+      });
   }
 
 }

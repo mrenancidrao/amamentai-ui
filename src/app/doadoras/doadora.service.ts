@@ -30,17 +30,17 @@ export class DoadoraService {
     params.set('size', filtro.itensPorPagina.toString());
 
     if (filtro.nome) {
-      params.set('doadora', filtro.nome);
+      params.set('nome', filtro.nome);
     }
 
     return this.http.get(`${this.DoadorasUrl}`, { headers, search: params })
      .toPromise()
      .then(response => {
        const responseJson = response.json();
-       const Doadoras = responseJson.content;
+       const doadoras = responseJson.content;
 
        const resultado = {
-         Doadoras,
+         doadoras,
          total: responseJson.totalElements
        };
 
@@ -48,5 +48,26 @@ export class DoadoraService {
 
       });
   }
+
+  listarTodas(): Promise<any> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+
+    return this.http.get(`${this.DoadorasUrl}`, { headers })
+      .toPromise()
+      .then(response => response.json().content);
+  }
+
+  
+  excluir(id: number): Promise<void> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+
+    return this.http.delete(`${this.DoadorasUrl}/${id}`, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
 
 }

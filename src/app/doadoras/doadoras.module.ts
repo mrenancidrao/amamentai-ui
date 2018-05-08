@@ -2,7 +2,6 @@ import { SharedModule } from './../shared/shared.module';
 
 import { DoadorasPesquisaComponent } from './doadoras-pesquisa/doadoras-pesquisa.component';
 import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.component';
-import { DoadorasGridComponent } from './doadoras-grid/doadoras-grid.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabViewModule } from 'primeng/components/tabview/tabview';
@@ -29,7 +28,6 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
   ],
   declarations: [
-    DoadorasGridComponent,
     DoadoraCadastroComponent,
     DoadorasPesquisaComponent
   ],

@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AgendamentoService } from './agendamentos/agendamento.service';
 import { HttpModule } from '@angular/http';
+import { DoadoraService } from './doadoras/doadora.service';
 
 
 
@@ -38,7 +39,7 @@ import { HttpModule } from '@angular/http';
     CoreModule
 
   ],
-  providers: [AgendamentoService],
+  providers: [AgendamentoService, DoadoraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

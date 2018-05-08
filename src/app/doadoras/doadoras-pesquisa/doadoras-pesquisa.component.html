@@ -1,22 +1,40 @@
 <div class="container">
     <div class="ui-g">
+
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
+
       <div class="ui-g-12">
         <h1>Doadoras</h1>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text">
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Pesquisar"></button>
       </div>
+
+        </form>
+
     </div>
 
     <div class="ui-g-12">
       <div class="ui-g-12">
-        <app-doadoras-grid [doadoras]="doadoras"></app-doadoras-grid>
+        <p-dataTable [value]="doadoras" [paginator]="true" [rows]="filtro.itensPorPagina" [responsive]="true"
+              emptyMessage="Nenhuma doadora encontrada" [lazy]="true" [totalRecords]="totalRegistros"
+              (onLazyLoad)="aoMudarPagina($event)" #tabela>
+          <p-column field="pessoa.nome" header="Nome"></p-column>
+          <p-column field="pessoa.endereco.logradouro" header="Logradouro"></p-column>
+          <p-column field="pessoa.endereco.bairro.nome" header="Bairro"></p-column>
+          <p-column styleClass="col-acao">
+              <ng-template let-doadora="rowData" pTemplate="body">
+                <button pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+                <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(doadora)"></button>
+              </ng-template>
+          </p-column>
+        </p-dataTable>
       </div>
 
       <div class="ui-g-12">
