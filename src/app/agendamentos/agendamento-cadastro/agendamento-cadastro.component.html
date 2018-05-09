@@ -8,8 +8,8 @@
       </div>
 
       <div class="ui-g-12 ui-fluid">
-          <label>Doadora {{ doadora.errors }}</label>
-          <p-dropdown [options]="doadoras" [filter]="true" [autoWidth]="false" placeholder="Selecione uma doadora" ngModel #doadora="ngModel" required></p-dropdown>
+          <label>Doadora</label>
+          <p-dropdown [options]="doadoras" [filter]="true" name="doadora" [autoWidth]="false" placeholder="Selecione uma doadora" ngModel required></p-dropdown>
       </div>
       
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -24,7 +24,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Objetivo do Agendamento</label>
-          <p-dropdown [options]="objetivos" [autoWidth]="false" placeholder="Selecione o objetivo do agendamento" #rota></p-dropdown>
+          <p-dropdown [options]="objetivos" name="objetivo" [autoWidth]="false" placeholder="Selecione" ngModel required></p-dropdown>
       </div>
 
       <div class="ui-g-12">

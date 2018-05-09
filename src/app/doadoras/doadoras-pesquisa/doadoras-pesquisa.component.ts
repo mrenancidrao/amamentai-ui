@@ -1,6 +1,9 @@
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { DoadoraService, DoadoraFiltro } from './../doadora.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/components/common/api';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-doadoras-pesquisa',
@@ -14,7 +17,10 @@ export class DoadorasPesquisaComponent implements OnInit {
   doadoras = [];
   @ViewChild('tabela') tabela;
 
-  constructor(private doadoraService: DoadoraService) {  }
+  constructor(private doadoraService: DoadoraService, 
+    private errorHandler: ErrorHandlerService,
+    private toasty: ToastyService, 
+    private confirmation: ConfirmationService) {  }
 
   ngOnInit() {
 
@@ -27,7 +33,9 @@ export class DoadorasPesquisaComponent implements OnInit {
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.doadoras = resultado.doadoras;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+      
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -35,11 +43,27 @@ export class DoadorasPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(doadora: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(doadora);
+      }
+    });
+    
+  }
+
   excluir(doadora: any) {
       this.doadoraService.excluir(doadora.id)
       .then(() => {
-        this.tabela.first = 0;
-      });
-  }
+        if (this.tabela.first === 0) {
+          this.pesquisar();
+        } else {
+          this.tabela.first = 0;
+        }
 
+        this.toasty.success('Doadora excluída com sucesso');
+
+      }).catch(erro => this.errorHandler.handle(erro));
+  }
 }

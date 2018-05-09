@@ -33,4 +33,6 @@ export class AgendamentosPesquisaComponent implements OnInit {
       const pagina = event.first / event.rows;
       this.pesquisar(pagina);
     }
+
+
 }
