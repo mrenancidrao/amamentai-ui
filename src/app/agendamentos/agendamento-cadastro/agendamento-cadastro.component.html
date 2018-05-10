@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>
@@ -8,28 +8,33 @@
       </div>
 
       <div class="ui-g-12 ui-fluid">
-          <label>Doadora</label>
-          <p-dropdown [options]="doadoras" [filter]="true" name="doadora" [autoWidth]="false" placeholder="Selecione uma doadora" ngModel required></p-dropdown>
+          <label>Banco de Leite</label>
+          <p-dropdown [options]="bancos" [filter]="true" name="banco" [autoWidth]="false" placeholder="Selecione um banco de leite" [(ngModel)]="agendamento.banco.id" required></p-dropdown>
       </div>
-      
+
+      <div class="ui-g-12 ui-fluid">
+          <label>Doadora</label>
+          <p-dropdown [options]="doadoras" [filter]="true" name="doadora" [autoWidth]="false" placeholder="Selecione uma doadora" [(ngModel)]="agendamento.doadora.id" required></p-dropdown>
+      </div>
+
       <div class="ui-g-6 ui-md-3 ui-fluid">
           <label>Data</label>
-          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="true" placeholder="Escolha uma data disponível"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" name="data" [readonlyInput]="true" placeholder="Escolha uma data disponível" [(ngModel)]="agendamento.data"></p-calendar>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Rota</label>
-        <p-dropdown [options]="rotas" [autoWidth]="false" placeholder="Selecione a rota" #rota></p-dropdown>
+        <p-dropdown [options]="rotas" name="rota" [autoWidth]="false" placeholder="Selecione a rota" [(ngModel)]="agendamento.rota.id" #rota></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Objetivo do Agendamento</label>
-          <p-dropdown [options]="objetivos" name="objetivo" [autoWidth]="false" placeholder="Selecione o objetivo" ngModel required></p-dropdown>
+          <p-dropdown [options]="objetivos" name="objetivo" [autoWidth]="false" placeholder="Selecione o objetivo" [(ngModel)]="agendamento.objetivo.id" required></p-dropdown>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
-        <button pButton type="submit" class="ui-button-info" label="Novo"></button>
+        <button pButton class="ui-button-info" label="Novo"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
     </div>

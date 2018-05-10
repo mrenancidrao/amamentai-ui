@@ -1,3 +1,4 @@
+import { Agendamento } from './../core/model';
 
 import { Http } from '@angular/http';
 import { Headers, URLSearchParams } from '@angular/http';
@@ -8,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
 export class AgendamentoFiltro {
-  doadora: string;
+  doadoraNome: string;
   dataAgenda: Date;
   pagina = 0;
   itensPorPagina = 5;
@@ -30,8 +31,8 @@ export class AgendamentoService {
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
 
-    if (filtro.doadora) {
-      params.set('doadora', filtro.doadora);
+    if (filtro.doadoraNome) {
+      params.set('doadoraNome', filtro.doadoraNome);
     }
 
     if (filtro.dataAgenda) {
@@ -52,6 +53,35 @@ export class AgendamentoService {
        return resultado;
 
       });
+  }
+
+  listarTodos(): Promise<any> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+
+    return this.http.get(`${this.agendamentosUrl}`, { headers })
+      .toPromise()
+      .then(response => response.json().content);
+  }
+
+  excluir(id: number): Promise<void> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+
+    return this.http.delete(`${this.agendamentosUrl}/${id}`, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
+  adicionar(agendamento: Agendamento): Promise<Agendamento> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(`http://localhost:8080/agenda`, JSON.stringify(agendamento), { headers })
+        .toPromise()
+        .then(response => response.json());
   }
 
 

@@ -1,3 +1,5 @@
+import { BancoService } from './../bancos/banco.service';
+import { RotaService } from './../rotas/rota.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -18,7 +20,7 @@ import { ObjetivoService } from '../objetivos/objetivo.service';
 @NgModule({
   imports: [
     CommonModule,
-    
+
     ToastyModule.forRoot(),
     ConfirmDialogModule
 
@@ -34,9 +36,11 @@ import { ObjetivoService } from '../objetivos/objetivo.service';
   ],
   providers: [
     ErrorHandlerService,
-    AgendamentoService, 
-    DoadoraService, 
+    AgendamentoService,
+    BancoService,
+    DoadoraService,
     ObjetivoService,
+    RotaService,
 
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }

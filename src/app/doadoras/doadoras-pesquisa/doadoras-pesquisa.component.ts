@@ -17,9 +17,9 @@ export class DoadorasPesquisaComponent implements OnInit {
   doadoras = [];
   @ViewChild('tabela') tabela;
 
-  constructor(private doadoraService: DoadoraService, 
+  constructor(private doadoraService: DoadoraService,
     private errorHandler: ErrorHandlerService,
-    private toasty: ToastyService, 
+    private toasty: ToastyService,
     private confirmation: ConfirmationService) {  }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class DoadorasPesquisaComponent implements OnInit {
         this.doadoras = resultado.doadoras;
       })
       .catch(erro => this.errorHandler.handle(erro));
-      
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -50,7 +49,7 @@ export class DoadorasPesquisaComponent implements OnInit {
         this.excluir(doadora);
       }
     });
-    
+
   }
 
   excluir(doadora: any) {

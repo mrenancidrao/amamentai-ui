@@ -58,7 +58,6 @@ export class DoadoraService {
       .then(response => response.json().content);
   }
 
-  
   excluir(id: number): Promise<void> {
     const headers = new Headers();
 

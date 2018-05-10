@@ -4,9 +4,9 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class ObjetivoService {
+export class RotaService {
 
-  objetivosUrl = 'http://localhost:8080/objetivo';
+  rotasUrl = 'http://localhost:8080/rota';
 
   constructor(private http: Http) { }
 
@@ -14,7 +14,7 @@ export class ObjetivoService {
     const headers = new Headers();
     headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
-    return this.http.get(`${this.objetivosUrl}`, { headers })
+    return this.http.get(`${this.rotasUrl}`, { headers })
       .toPromise()
       .then(response => response.json());
   }

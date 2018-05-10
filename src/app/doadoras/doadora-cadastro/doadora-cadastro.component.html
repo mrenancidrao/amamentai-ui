@@ -23,6 +23,20 @@
           <app-message [control]="dataNasc" error="required" text="Informe data de nascimento"></app-message>
       </div>
 
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Data do Parto</label>
+          <p-calendar dateFormat="dd/mm/yy" name="dataParto" [readonlyInput]="true" ngModel #dataParto="ngModel" required></p-calendar>
+
+          <app-message [control]="dataParto" error="required" text="Informe data do parto"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome do Bebê </label>
+        <input type="text" pInputText name="nomeBebe" ngModel #nomeBebe="ngModel" required minlength="4"/>
+
+       <app-message [control]="nomeBebe" error="required" text="Informe o nome do(a) filho(a) da doadora."></app-message>
+      </div>
+
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
         <input type="text" pInputText name="logradouro" ngModel #logradouro="ngModel" required/>
