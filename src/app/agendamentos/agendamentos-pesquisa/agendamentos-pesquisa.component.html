@@ -19,7 +19,7 @@
     </div>
 
     <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
+      <button pButton class="ui-button-info" type="submit" label="Pesquisar"></button>
     </div>
 
     </form>
@@ -32,7 +32,7 @@
               (onLazyLoad)="aoMudarPagina($event)">
             <p-column header="Data" styleClass="col-data">
                 <ng-template let-agend="rowData" pTemplate="body">
-                    <span>{{ agend.dataAgenda | date: 'dd/MM/yyyy' }}</span>
+                    <span>{{ agend.dataAgenda }}</span>
                 </ng-template></p-column>
             <p-column field="doadora" header="Doadora"></p-column>
             <p-column field="objetivo" header="Objetivo"></p-column>
@@ -48,8 +48,8 @@
             </p-column>
             <p-column styleClass="col-acao">
                 <ng-template pTemplate="body">
-                  <button pButton icon="fas fa-calendar-check" class="icon-calendar-check" pTooltip="Confirmar Agendamento" tooltipPosition="top"></button>
-                  <button pButton icon="fas fa-calendar-times" class="icon-calendar-reject" pTooltip="Cancelar Agendamento" tooltipPosition="top"></button>
+                  <button pButton icon="fas fa-calendar-check" class="ui-button-info icon-calendar-check" pTooltip="Confirmar Agendamento" tooltipPosition="top"></button>
+                  <button pButton icon="fas fa-calendar-times" class="ui-button-info icon-calendar-reject" pTooltip="Cancelar Agendamento" tooltipPosition="top"></button>
                 </ng-template>
             </p-column>
           </p-dataTable>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="ui-g-12">
-      <button pButton label="Novo Agendamento"></button>
+      <button pButton class="ui-button-info" label="Novo Agendamento"></button>
     </div>
 
   </div>
