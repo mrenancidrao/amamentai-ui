@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
+import { Doadora } from '../core/model';
 
 export class DoadoraFiltro {
   nome: string;
@@ -66,6 +67,16 @@ export class DoadoraService {
     return this.http.delete(`${this.DoadorasUrl}/${id}`, { headers })
       .toPromise()
       .then(() => null);
+  }
+
+  adicionar(doadora: Doadora): Promise<Doadora> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(`${this.DoadorasUrl}`, JSON.stringify(doadora), { headers })
+        .toPromise()
+        .then(response => response.json());
   }
 
 

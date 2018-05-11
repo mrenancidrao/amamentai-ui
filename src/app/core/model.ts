@@ -1,6 +1,27 @@
-import { DoadoraService } from './../doadoras/doadora.service';
+
+export class Bairro {
+  id: number;
+}
+
+export class Endereco {
+  logradouro: string;
+  numero: string;
+  complemento: string;
+  bairro = new Bairro();
+}
+
+export class Pessoa {
+  id: number;
+  nome: string;
+  dataNascimento: Date;
+  endereco = new Endereco();
+}
+
 export class Doadora {
   id: number;
+  pessoa = new Pessoa();
+  dataParto: Date;
+  nomeBebe: string;
 }
 
 export class Banco {

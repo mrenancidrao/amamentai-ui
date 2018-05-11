@@ -19,7 +19,9 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
           <label>Data</label>
-          <p-calendar dateFormat="dd/mm/yy" name="data" [readonlyInput]="true" placeholder="Escolha uma data disponível" [(ngModel)]="agendamento.data"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" name="data" [readonlyInput]="true" placeholder="Escolha uma data disponível" #dataAgend="ngModel" [(ngModel)]="agendamento.data"></p-calendar>
+
+          <app-message [control]="dataAgend" error="required" text="Informe data do agendamento"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -35,7 +37,7 @@
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
         <button pButton class="ui-button-info" label="Novo"></button>
-        <a href="javascript:;">Voltar para a pesquisa</a>
+        <a routerLink="/agenda">Voltar para a pesquisa</a>
       </div>
     </div>
   </form>

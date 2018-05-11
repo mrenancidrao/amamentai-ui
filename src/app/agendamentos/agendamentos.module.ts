@@ -11,11 +11,17 @@ import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
+    RouterModule,
 
     TabViewModule,
     InputTextModule,

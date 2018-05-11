@@ -44,6 +44,10 @@ export class AgendamentoCadastroComponent implements OnInit {
     this.agendamentoService.adicionar(this.agendamento)
       .then(() => {
         this.toasty.success('Agendamento adicionado com sucesso!');
+
+        form.reset();
+        this.agendamento = new Agendamento();
+
       })
       .catch(erro => this.errorHandle.handle(erro));
   }

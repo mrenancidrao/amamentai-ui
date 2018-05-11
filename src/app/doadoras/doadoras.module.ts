@@ -12,12 +12,15 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
+    RouterModule,
 
     TabViewModule,
     InputTextModule,

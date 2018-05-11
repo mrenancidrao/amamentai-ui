@@ -16,13 +16,23 @@ import { AgendamentoService } from '../agendamentos/agendamento.service';
 
 
 import { ObjetivoService } from '../objetivos/objetivo.service';
+import { BairroService } from '../bairros/bairro.service';
+import { CidadeService } from '../cidades/cidade.service';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   imports: [
     CommonModule,
 
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule,
+
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   declarations: [
@@ -41,6 +51,8 @@ import { ObjetivoService } from '../objetivos/objetivo.service';
     DoadoraService,
     ObjetivoService,
     RotaService,
+    BairroService,
+    CidadeService,
 
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
