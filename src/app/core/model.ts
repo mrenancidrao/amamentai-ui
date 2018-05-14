@@ -1,6 +1,19 @@
+export class Estado {
+  id: number;
+  nome: string;
+  sigla: string;
+}
+
+export class Cidade {
+  id: number;
+  nome: string;
+  estado = new Estado();
+}
 
 export class Bairro {
   id: number;
+  nome: string;
+  cidade = new Cidade();
 }
 
 export class Endereco {

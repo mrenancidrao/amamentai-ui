@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-doadoras-pesquisa',
@@ -20,10 +21,12 @@ export class DoadorasPesquisaComponent implements OnInit {
   constructor(private doadoraService: DoadoraService,
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
-    private confirmation: ConfirmationService) {  }
+    private confirmation: ConfirmationService,
+    private title: Title)
+     {  }
 
   ngOnInit() {
-
+    this.title.setTitle('Amamentai - Pesquisa de Doadoras');
   }
 
   pesquisar(pagina = 0) {

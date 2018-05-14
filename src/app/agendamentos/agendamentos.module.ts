@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { AgendamentosRoutingModule } from './agendamentos-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -21,7 +23,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     SharedModule,
-    RouterModule,
+    AgendamentosRoutingModule,
 
     TabViewModule,
     InputTextModule,
@@ -36,9 +38,6 @@ import { RouterModule } from '@angular/router';
     AgendamentosPesquisaComponent
 
   ],
-  exports: [
-    AgendamentoCadastroComponent,
-    AgendamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class AgendamentosModule { }

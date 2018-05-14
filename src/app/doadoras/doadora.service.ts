@@ -80,4 +80,38 @@ export class DoadoraService {
   }
 
 
+  atualizar(doadora: Doadora): Promise<Doadora> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.DoadorasUrl}/${doadora.id}`, JSON.stringify(doadora), { headers })
+    .toPromise()
+    .then(response => response.json());
+
+  }
+
+  buscarPorId(id: number): Promise<Doadora> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
+
+    return this.http.get(`${this.DoadorasUrl}/${id}`, { headers })
+      .toPromise()
+      .then(response => {
+        const doadora = response.json() as Doadora;
+
+        this.converterStringsParaDatas([doadora]);
+
+        return doadora;
+      });
+  }
+
+  private converterStringsParaDatas(doadoras: Doadora[]) {
+    for (const doadora of doadoras) {
+      doadora.dataParto = moment(doadora.dataParto, 'YYYY-MM-DD').toDate();
+
+      doadora.pessoa.dataNascimento = moment(doadora.pessoa.dataNascimento, 'YYYY-MM-DD').toDate();
+    }
+  }
+
 }

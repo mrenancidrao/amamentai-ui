@@ -47,8 +47,9 @@
                 </ng-template>
             </p-column>
             <p-column styleClass="col-acao">
-                <ng-template pTemplate="body">
-                  <button pButton icon="fas fa-calendar-check" class="ui-button-info icon-calendar-check" pTooltip="Confirmar Agendamento" tooltipPosition="top"></button>
+                <ng-template pTemplate="body" let-agenda="rowData">
+                  <button pButton icon="fas fa-calendar-check" class="ui-button-info icon-calendar-check" pTooltip="Confirmar Agendamento" 
+                  tooltipPosition="top" [routerLink]="['/agenda', agenda.id]"></button>
                   <button pButton icon="fas fa-calendar-times" class="ui-button-info icon-calendar-reject" pTooltip="Cancelar Agendamento" tooltipPosition="top"></button>
                 </ng-template>
             </p-column>

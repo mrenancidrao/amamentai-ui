@@ -3,7 +3,7 @@
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>
-          Nova Doadora
+          {{ editando ? '' : 'Nova' }} Doadora
         </h1>
       </div>
 
@@ -61,7 +61,7 @@
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Cidade</label>
-        <p-dropdown [options]="cidades" [filter]="true" name="cidade" [autoWidth]="false" placeholder="Selecione uma cidade" ngModel #cidade="ngModel" required></p-dropdown>
+        <p-dropdown [options]="cidades" [filter]="true" name="cidade" [autoWidth]="false" placeholder="Selecione uma cidade" [(ngModel)]="doadora.pessoa.endereco.bairro.cidade.id" #cidade="ngModel" required></p-dropdown>
 
         <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
       </div>
@@ -96,7 +96,7 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
-        <button pButton type="submit" class="ui-button-info" label="Novo"></button>
+        <button pButton type="button" class="ui-button-info" label="Novo" (click)="novo(f)"></button>
         <a routerLink="/doadora">Voltar para a pesquisa</a>
       </div>
     </div>

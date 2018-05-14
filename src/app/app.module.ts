@@ -22,13 +22,8 @@ import { AgendamentosPesquisaComponent } from './agendamentos/agendamentos-pesqu
 import { AgendamentoCadastroComponent } from './agendamentos/agendamento-cadastro/agendamento-cadastro.component';
 import { DoadorasPesquisaComponent } from './doadoras/doadoras-pesquisa/doadoras-pesquisa.component';
 import { DoadoraCadastroComponent } from './doadoras/doadora-cadastro/doadora-cadastro.component';
-
-const routes: Routes = [
-  { path: 'agenda', component: AgendamentosPesquisaComponent },
-  { path: 'agenda/novo', component: AgendamentoCadastroComponent },
-  { path: 'doadora', component: DoadorasPesquisaComponent },
-  { path: 'doadora/novo', component: DoadoraCadastroComponent }
-];
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +33,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
 
     AgendamentosModule,
     DoadorasModule,

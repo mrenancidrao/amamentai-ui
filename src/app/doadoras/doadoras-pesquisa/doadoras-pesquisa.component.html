@@ -30,7 +30,7 @@
           <p-column field="pessoa.endereco.bairro.nome" header="Bairro"></p-column>
           <p-column styleClass="col-acao">
               <ng-template let-doadora="rowData" pTemplate="body">
-                <button pButton class="ui-button-info" icon="fa-pencil"  pTooltip="Editar" tooltipPosition="top"></button>
+                <button pButton class="ui-button-info" icon="fa-pencil"  pTooltip="Editar" tooltipPosition="top" [routerLink]="['/doadora', doadora.id]"></button>
                 <button pButton class="ui-button-info" icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(doadora)"></button>
               </ng-template>
           </p-column>

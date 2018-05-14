@@ -8,6 +8,7 @@ import { Agendamento } from '../../core/model';
 import { AgendamentoService } from '../agendamento.service';
 import { ToastyService } from 'ng2-toasty';
 import { BancoService } from '../../bancos/banco.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agendamento-cadastro',
@@ -29,10 +30,15 @@ export class AgendamentoCadastroComponent implements OnInit {
     private rotaService: RotaService,
     private agendamentoService: AgendamentoService,
     private toasty: ToastyService,
-    private errorHandle: ErrorHandlerService
+    private errorHandle: ErrorHandlerService,
+    private route: ActivatedRoute
+
   ) { }
 
   ngOnInit() {
+
+    console.log(this.route.snapshot.params['id']===null);
+
     this.carregarBancos();
     this.carregarDoadoras();
     this.carregarObjetivos();
