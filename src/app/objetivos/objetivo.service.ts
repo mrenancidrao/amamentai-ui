@@ -1,5 +1,6 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -8,13 +9,11 @@ export class ObjetivoService {
 
   objetivosUrl = 'http://localhost:8080/objetivo';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   listarTodos(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
-    return this.http.get(`${this.objetivosUrl}`, { headers })
+    return this.http.get(`${this.objetivosUrl}`)
       .toPromise()
       .then(response => response.json());
   }

@@ -1,3 +1,4 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
@@ -8,13 +9,11 @@ export class BancoService {
 
   bancosUrl = 'http://localhost:8080/banco';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   listarTodos(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
-    return this.http.get(`${this.bancosUrl}`, { headers })
+    return this.http.get(`${this.bancosUrl}`)
       .toPromise()
       .then(response => response.json());
   }

@@ -1,6 +1,6 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Agendamento } from './../core/model';
 
-import { Http } from '@angular/http';
 import { Headers, URLSearchParams } from '@angular/http';
 
 import { Injectable } from '@angular/core';
@@ -20,13 +20,10 @@ export class AgendamentoService {
 
   agendamentosUrl = 'http://localhost:8080/vAgenda';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   pesquisar(filtro: AgendamentoFiltro): Promise<any> {
     const params = new URLSearchParams();
-    const headers = new Headers();
-
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -39,7 +36,7 @@ export class AgendamentoService {
       params.set('dataAgenda', moment(filtro.dataAgenda).format('YYYY-MM-DD'));
     }
 
-    return this.http.get(`${this.agendamentosUrl}`, { headers, search: params })
+    return this.http.get(`${this.agendamentosUrl}`, { search: params })
      .toPromise()
      .then(response => {
        const responseJson = response.json();
@@ -56,30 +53,21 @@ export class AgendamentoService {
   }
 
   listarTodos(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-
-    return this.http.get(`${this.agendamentosUrl}`, { headers })
+    return this.http.get(`${this.agendamentosUrl}`)
       .toPromise()
       .then(response => response.json().content);
   }
 
   excluir(id: number): Promise<void> {
-    const headers = new Headers();
 
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-
-    return this.http.delete(`${this.agendamentosUrl}/${id}`, { headers })
+    return this.http.delete(`${this.agendamentosUrl}/${id}`)
       .toPromise()
       .then(() => null);
   }
 
   adicionar(agendamento: Agendamento): Promise<Agendamento> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.post(`http://localhost:8080/agenda`, JSON.stringify(agendamento), { headers })
+    return this.http.post(`http://localhost:8080/agenda`, JSON.stringify(agendamento))
         .toPromise()
         .then(response => response.json());
   }

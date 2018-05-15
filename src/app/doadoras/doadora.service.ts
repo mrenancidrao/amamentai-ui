@@ -1,5 +1,4 @@
-
-import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Headers, URLSearchParams } from '@angular/http';
 
 import { Injectable } from '@angular/core';
@@ -19,13 +18,10 @@ export class DoadoraService {
 
   DoadorasUrl = 'http://localhost:8080/doadora';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   pesquisar(filtro: DoadoraFiltro): Promise<any> {
     const params = new URLSearchParams();
-    const headers = new Headers();
-
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -34,7 +30,7 @@ export class DoadoraService {
       params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.DoadorasUrl}`, { headers, search: params })
+    return this.http.get(`${this.DoadorasUrl}`, { search: params })
      .toPromise()
      .then(response => {
        const responseJson = response.json();
@@ -51,51 +47,38 @@ export class DoadoraService {
   }
 
   listarTodas(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
-    return this.http.get(`${this.DoadorasUrl}`, { headers })
+    return this.http.get(`${this.DoadorasUrl}`)
       .toPromise()
       .then(response => response.json().content);
   }
 
   excluir(id: number): Promise<void> {
-    const headers = new Headers();
 
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-
-    return this.http.delete(`${this.DoadorasUrl}/${id}`, { headers })
+    return this.http.delete(`${this.DoadorasUrl}/${id}`)
       .toPromise()
       .then(() => null);
   }
 
   adicionar(doadora: Doadora): Promise<Doadora> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.post(`${this.DoadorasUrl}`, JSON.stringify(doadora), { headers })
+    return this.http.post(`${this.DoadorasUrl}`, JSON.stringify(doadora))
         .toPromise()
         .then(response => response.json());
   }
 
 
   atualizar(doadora: Doadora): Promise<Doadora> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.DoadorasUrl}/${doadora.id}`, JSON.stringify(doadora), { headers })
+    return this.http.put(`${this.DoadorasUrl}/${doadora.id}`, JSON.stringify(doadora))
     .toPromise()
     .then(response => response.json());
 
   }
 
   buscarPorId(id: number): Promise<Doadora> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ZW5mZXJtZWlyYWRhc2lsdmFAZ21haWwuY29tOmVuZmVybWVpcmE=');
 
-    return this.http.get(`${this.DoadorasUrl}/${id}`, { headers })
+    return this.http.get(`${this.DoadorasUrl}/${id}`)
       .toPromise()
       .then(response => {
         const doadora = response.json() as Doadora;

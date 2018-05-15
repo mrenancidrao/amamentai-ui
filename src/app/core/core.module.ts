@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 
 import { CommonModule } from '@angular/common';
+import { JwtHelper } from 'angular2-jwt';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
 
@@ -63,6 +64,7 @@ import { AuthService } from '../seguranca/auth.service';
     CidadeService,
 
     ConfirmationService,
+    JwtHelper,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })

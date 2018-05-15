@@ -37,7 +37,7 @@ export class AgendamentoCadastroComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.route.snapshot.params['id']===null);
+    console.log(this.route.snapshot.params['id'] === null);
 
     this.carregarBancos();
     this.carregarDoadoras();
