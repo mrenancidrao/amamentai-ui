@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
-import { ButtonModule } from 'primeng/components/button/button';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
@@ -24,7 +23,6 @@ import { RouterModule } from '@angular/router';
 
     TabViewModule,
     InputTextModule,
-    ButtonModule,
     DataTableModule,
     TooltipModule,
     CalendarModule,

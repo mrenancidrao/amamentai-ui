@@ -22,6 +22,8 @@ import { CidadeService } from '../cidades/cidade.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { ButtonModule } from 'primeng/components/button/button';
+import { AuthService } from '../seguranca/auth.service';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ToastyModule.forRoot(),
     ConfirmDialogModule,
     RouterModule,
+    ButtonModule,
 
     FormsModule,
     ReactiveFormsModule
@@ -43,11 +46,14 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
   exports: [
     NavbarComponent,
 
+    ButtonModule,
     ToastyModule,
     ConfirmDialogModule
   ],
   providers: [
     ErrorHandlerService,
+    AuthService,
+
     AgendamentoService,
     BancoService,
     DoadoraService,

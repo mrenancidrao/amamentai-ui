@@ -6,6 +6,7 @@ import { DoadorasPesquisaComponent } from "./doadoras/doadoras-pesquisa/doadoras
 import { DoadoraCadastroComponent } from "./doadoras/doadora-cadastro/doadora-cadastro.component";
 import { PaginaNaoEncontradaComponent } from "./core/pagina-nao-encontrada.component";
 import { AgendamentosRoutingModule } from "./agendamentos/agendamentos-routing.module";
+import { SegurancaRoutingModule } from "./seguranca/seguranca-routing.module";
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
 
     imports: [
       RouterModule.forRoot(routes),
-      AgendamentosRoutingModule
+      AgendamentosRoutingModule,
+      SegurancaRoutingModule
     ],
     
     exports: [

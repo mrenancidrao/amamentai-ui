@@ -24,6 +24,7 @@ import { DoadorasPesquisaComponent } from './doadoras/doadoras-pesquisa/doadoras
 import { DoadoraCadastroComponent } from './doadoras/doadora-cadastro/doadora-cadastro.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
 
     AgendamentosModule,
     DoadorasModule,
+    SegurancaModule,
     CoreModule
 
   ],
