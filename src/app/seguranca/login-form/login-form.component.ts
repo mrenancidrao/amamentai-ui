@@ -19,7 +19,7 @@ export class LoginFormComponent {
   ) { }
 
 
-  private login(usuario: string, senha: string) {
+  login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
     .then(() => {
       this.router.navigate(['/agenda']);
