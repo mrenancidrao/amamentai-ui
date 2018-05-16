@@ -8,10 +8,10 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class RotaService {
 
-  rotasUrl = 'http://localhost:8080/rota';
+  rotasUrl: string;
 
   constructor(private http: AuthHttp) {
-  //  this.rotasUrl = `${environment.apiUrl}/rota`;
+  this.rotasUrl = `${environment.apiUrl}/rota`;
   }
 
   listarTodos(): Promise<any> {

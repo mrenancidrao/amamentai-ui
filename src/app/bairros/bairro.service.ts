@@ -6,10 +6,10 @@ import { environment } from '../../environments/environment.prod';
 @Injectable()
 export class BairroService {
 
-  bairrosUrl = 'http://localhost:8080/bairro';
+  bairrosUrl: string;
 
   constructor(private http: AuthHttp) {
-  //  this.bairrosUrl = `${environment.apiUrl}/bairro`;
+  this.bairrosUrl = `${environment.apiUrl}/bairro`;
    }
 
   listarTodos(): Promise<any> {

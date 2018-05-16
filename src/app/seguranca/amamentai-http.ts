@@ -5,6 +5,7 @@ import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth.service';
+import { throws } from 'assert';
 
 
 export class NotAuthenticatedError {}
@@ -54,6 +55,9 @@ export class AmamentaiHttp extends AuthHttp {
 
       const chamadaNovoAccessToken = this.auth.obterNovoAccessToken()
         .then(() => {
+          if (this.auth.isAccessTokenInvalid()) {
+            throw new NotAuthenticatedError();
+          }
           return fn().toPromise();
         });
 

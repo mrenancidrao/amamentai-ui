@@ -3,13 +3,16 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class BancoService {
 
-  bancosUrl = 'http://localhost:8080/banco';
+  bancosUrl: string;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) { 
+    this.bancosUrl = `${environment.apiUrl}/banco`
+  }
 
   listarTodos(): Promise<any> {
 

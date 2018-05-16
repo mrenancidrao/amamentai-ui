@@ -17,10 +17,10 @@ export class DoadoraFiltro {
 @Injectable()
 export class DoadoraService {
 
-  doadorasUrl = 'http://localhost:8080/doadora';
+  doadorasUrl: string;
 
   constructor(private http: AuthHttp) {
-  //  this.doadorasUrl = `${environment.apiUrl}/doadora`;
+  this.doadorasUrl = `${environment.apiUrl}/doadora`;
   }
 
   pesquisar(filtro: DoadoraFiltro): Promise<any> {

@@ -6,10 +6,10 @@ import { environment } from '../../environments/environment.prod';
 @Injectable()
 export class CidadeService {
 
-  cidadesUrl = 'http://localhost:8080/cidade';
+  cidadesUrl: string;
 
   constructor(private http: AuthHttp) {
-  //  this.cidadesUrl = `${environment.apiUrl}/cidade`;
+  this.cidadesUrl = `${environment.apiUrl}/cidade`;
   }
 
   listarTodos(): Promise<any> {

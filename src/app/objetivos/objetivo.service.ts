@@ -8,10 +8,10 @@ import { environment } from '../../environments/environment.prod';
 @Injectable()
 export class ObjetivoService {
 
-  objetivosUrl = 'http://localhost:8080/objetivo';
+  objetivosUrl: string;
 
   constructor(private http: AuthHttp) {
-  //  this.objetivosUrl = `${environment}/objetivo`;
+  this.objetivosUrl = `${environment.apiUrl}/objetivo`;
   }
 
   listarTodos(): Promise<any> {

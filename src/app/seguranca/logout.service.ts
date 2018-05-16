@@ -6,14 +6,14 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class LogoutService {
 
-  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
+  tokensRevokeUrl: string;
 
   constructor(
     private http: AuthHttp,
     private auth: AuthService
   ) {
 
-  // this.tokensRevokeUrl = `${environment.apiUrl}/tokens/revoke`;
+  this.tokensRevokeUrl = `${environment.apiUrl}/tokens/revoke`;
 
   }
 
