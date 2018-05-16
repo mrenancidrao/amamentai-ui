@@ -50,7 +50,7 @@ export class DoadoraCadastroComponent implements OnInit {
   }
 
   get editando() {
-    console.log(this.doadora.id);
+  //  console.log(this.doadora.id);
     return Boolean(this.doadora.id);
   }
 
@@ -62,11 +62,11 @@ export class DoadoraCadastroComponent implements OnInit {
       })
       .catch(erro => this.errorHandle.handle(erro));
 
-      console.log(this.doadora);
+  //    console.log(this.doadora);
   }
 
   salvar(form: FormControl) {
-    console.log(this.editando)
+  //  console.log(this.editando)
     if (this.editando) {
       this.atualizar(form);
     } else {
@@ -75,7 +75,7 @@ export class DoadoraCadastroComponent implements OnInit {
   }
 
   adicionar(form: FormControl) {
-    console.log(`Adicionando ` + JSON.stringify(this.doadora));
+  //  console.log(`Adicionando ` + JSON.stringify(this.doadora));
     this.doadoraService.adicionar(this.doadora)
       .then(doadoraAdicionada => {
         this.toasty.success('Doadora cadastrada com sucesso!');
@@ -87,7 +87,7 @@ export class DoadoraCadastroComponent implements OnInit {
   }
 
   atualizar(form: FormControl) {
-    console.log(this.doadora);
+  //  console.log(this.doadora);
     this.doadoraService.atualizar(this.doadora)
     .then(doadora => {
       this.doadora = doadora;
@@ -116,8 +116,8 @@ export class DoadoraCadastroComponent implements OnInit {
   }
 
   novo(form: FormControl) {
-    //form.reset();
-    //this.doadora = new Doadora();
+    // form.reset();
+    // this.doadora = new Doadora();
     this.router.navigate(['/doadora/novo']);
   }
 

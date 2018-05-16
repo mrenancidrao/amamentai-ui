@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
@@ -9,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
-import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AgendamentosRoutingModule } from './agendamentos-routing.module';
@@ -24,6 +24,7 @@ import { AppRoutingModule } from '../app-routing.module';
     SharedModule,
     AgendamentosRoutingModule,
 
+    CoreModule,
     TabViewModule,
     InputTextModule,
     DataTableModule,

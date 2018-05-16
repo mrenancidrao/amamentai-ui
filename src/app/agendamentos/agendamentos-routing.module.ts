@@ -1,16 +1,32 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { AuthGuard } from './../seguranca/auth.guard';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { AgendamentosPesquisaComponent } from "./agendamentos-pesquisa/agendamentos-pesquisa.component";
-import { AgendamentoCadastroComponent } from "./agendamento-cadastro/agendamento-cadastro.component";
+import { AgendamentosPesquisaComponent } from './agendamentos-pesquisa/agendamentos-pesquisa.component';
+import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento-cadastro.component';
 
 
 const routes: Routes = [
-    { path: 'agenda', component: AgendamentosPesquisaComponent },
-    { path: 'agenda/novo', component: AgendamentoCadastroComponent },
-    { path: 'agenda/:id', component: AgendamentoCadastroComponent },
+    {
+      path: 'agenda',
+      component: AgendamentosPesquisaComponent,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_PESQUISAR_AGENDA'] }
+    },
+    {
+      path: 'agenda/novo',
+      component: AgendamentoCadastroComponent,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_CADASTRAR_AGENDA'] }
+    },
+    {
+      path: 'agenda/:id',
+      component: AgendamentoCadastroComponent,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_CADASTRAR_AGENDA'] }
+    },
   ];
-  
+
   @NgModule({
 
     imports: [
@@ -19,4 +35,3 @@ const routes: Routes = [
     exports: [RouterModule]
   })
   export class AgendamentosRoutingModule { }
-  

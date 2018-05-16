@@ -1,8 +1,9 @@
-import { errorHandler } from '@angular/platform-browser/src/browser';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,6 @@ export class LoginFormComponent {
 
   constructor(
     private auth: AuthService,
-    // tslint:disable-next-line:no-shadowed-variable
     private errorHandler: ErrorHandlerService,
     private router: Router
   ) { }

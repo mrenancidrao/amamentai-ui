@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { NotAuthenticatedError } from '../seguranca/amamentai-http';
-import { Router } from '@angular/router/src/router';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorHandlerService {
 
-  constructor( 
+  constructor(
     private toasty: ToastyService,
     private router: Router
   ) { }
@@ -29,7 +29,7 @@ export class ErrorHandlerService {
     msg = 'Ocorreu um erro ao processar a sua solicitação';
 
     if (errorResponse.status === 403) {
-      msg = 'Você não tem permissão para executar esta ação.'
+      msg = 'Você não tem permissão para executar esta ação.';
     }
     try {
       errors = errorResponse.json();

@@ -9,6 +9,7 @@ import { AgendamentoService } from '../agendamento.service';
 import { ToastyService } from 'ng2-toasty';
 import { BancoService } from '../../bancos/banco.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-agendamento-cadastro',
@@ -31,18 +32,38 @@ export class AgendamentoCadastroComponent implements OnInit {
     private agendamentoService: AgendamentoService,
     private toasty: ToastyService,
     private errorHandle: ErrorHandlerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title: Title
 
   ) { }
 
   ngOnInit() {
 
-    console.log(this.route.snapshot.params['id'] === null);
+  //  console.log(this.route.snapshot.params['id'] === null);
+
+    this.title.setTitle('Amamentai - Novo Agendamento');
+
+    const idAgenda = this.route.snapshot.params['id'];
+
+    if (idAgenda) {
+      this.carregarAgendamento(idAgenda);
+    }
 
     this.carregarBancos();
     this.carregarDoadoras();
     this.carregarObjetivos();
     this.carregarRotas();
+  }
+
+  carregarAgendamento(id: number) {
+    this.agendamentoService.buscarPorId(id)
+      .then(agendamento => {
+        this.agendamento = agendamento;
+        this.atualizarTituloEdicao();
+      })
+      .catch(erro => this.errorHandle.handle(erro));
+
+  //    console.log(this.doadora);
   }
 
   salvar(form) {
@@ -93,6 +114,8 @@ export class AgendamentoCadastroComponent implements OnInit {
       .catch(erro => this.errorHandle.handle(erro));
   }
 
-
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Amamentai - Agendamento ${this.agendamento.doadora.pessoa.nome}`);
+  }
 
 }

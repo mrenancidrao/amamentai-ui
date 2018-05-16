@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 import { Doadora } from '../core/model';
+import { environment } from '../../environments/environment';
 
 export class DoadoraFiltro {
   nome: string;
@@ -16,9 +17,11 @@ export class DoadoraFiltro {
 @Injectable()
 export class DoadoraService {
 
-  DoadorasUrl = 'http://localhost:8080/doadora';
+  doadorasUrl = 'http://localhost:8080/doadora';
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+  //  this.doadorasUrl = `${environment.apiUrl}/doadora`;
+  }
 
   pesquisar(filtro: DoadoraFiltro): Promise<any> {
     const params = new URLSearchParams();
@@ -30,7 +33,7 @@ export class DoadoraService {
       params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.DoadorasUrl}`, { search: params })
+    return this.http.get(`${this.doadorasUrl}`, { search: params })
      .toPromise()
      .then(response => {
        const responseJson = response.json();
@@ -48,21 +51,21 @@ export class DoadoraService {
 
   listarTodas(): Promise<any> {
 
-    return this.http.get(`${this.DoadorasUrl}`)
+    return this.http.get(`${this.doadorasUrl}`)
       .toPromise()
       .then(response => response.json().content);
   }
 
   excluir(id: number): Promise<void> {
 
-    return this.http.delete(`${this.DoadorasUrl}/${id}`)
+    return this.http.delete(`${this.doadorasUrl}/${id}`)
       .toPromise()
       .then(() => null);
   }
 
   adicionar(doadora: Doadora): Promise<Doadora> {
 
-    return this.http.post(`${this.DoadorasUrl}`, JSON.stringify(doadora))
+    return this.http.post(`${this.doadorasUrl}`, JSON.stringify(doadora))
         .toPromise()
         .then(response => response.json());
   }
@@ -70,7 +73,7 @@ export class DoadoraService {
 
   atualizar(doadora: Doadora): Promise<Doadora> {
 
-    return this.http.put(`${this.DoadorasUrl}/${doadora.id}`, JSON.stringify(doadora))
+    return this.http.put(`${this.doadorasUrl}/${doadora.id}`, JSON.stringify(doadora))
     .toPromise()
     .then(response => response.json());
 
@@ -78,7 +81,7 @@ export class DoadoraService {
 
   buscarPorId(id: number): Promise<Doadora> {
 
-    return this.http.get(`${this.DoadorasUrl}/${id}`)
+    return this.http.get(`${this.doadorasUrl}/${id}`)
       .toPromise()
       .then(response => {
         const doadora = response.json() as Doadora;

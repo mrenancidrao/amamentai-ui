@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { SharedModule } from './../shared/shared.module';
 
 import { DoadorasPesquisaComponent } from './doadoras-pesquisa/doadoras-pesquisa.component';
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     RouterModule,
 
+    CoreModule,
     TabViewModule,
     InputTextModule,
     DataTableModule,

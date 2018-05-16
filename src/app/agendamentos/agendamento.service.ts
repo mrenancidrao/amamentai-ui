@@ -72,5 +72,24 @@ export class AgendamentoService {
         .then(response => response.json());
   }
 
+  buscarPorId(id: number): Promise<Agendamento> {
+
+    return this.http.get(`${this.agendamentosUrl}/${id}`)
+      .toPromise()
+      .then(response => {
+        const doadora = response.json() as Agendamento;
+
+        this.converterStringsParaDatas([doadora]);
+
+        return doadora;
+      });
+  }
+
+  private converterStringsParaDatas(agendamentos: Agendamento[]) {
+    for (const agendamento of agendamentos) {
+      agendamento.data = moment(agendamento.data, 'YYYY-MM-DD').toDate();
+    }
+  }
+
 
 }

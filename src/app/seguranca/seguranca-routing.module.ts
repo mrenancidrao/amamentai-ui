@@ -1,6 +1,6 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { LoginFormComponent } from "./login-form/login-form.component";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 
@@ -8,7 +8,7 @@ import { LoginFormComponent } from "./login-form/login-form.component";
 const routes: Routes = [
     { path: 'login', component: LoginFormComponent },
   ];
-  
+
   @NgModule({
 
     imports: [
@@ -17,4 +17,3 @@ const routes: Routes = [
     exports: [RouterModule]
   })
   export class SegurancaRoutingModule { }
-  

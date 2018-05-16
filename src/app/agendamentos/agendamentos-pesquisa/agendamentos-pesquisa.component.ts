@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { AgendamentoService, AgendamentoFiltro } from '../agendamento.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
@@ -13,10 +14,13 @@ export class AgendamentosPesquisaComponent implements OnInit {
     filtro = new AgendamentoFiltro();
     agendamentos = [];
 
-    constructor(private agendamentoService: AgendamentoService) {}
+    constructor(
+      private agendamentoService: AgendamentoService,
+      private title: Title
+    ) {}
 
     ngOnInit() {
-
+      this.title.setTitle('Amamentai - Pesquisa de Agendamentos');
     }
 
     pesquisar(pagina = 0) {

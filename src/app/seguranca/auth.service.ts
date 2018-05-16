@@ -1,9 +1,10 @@
 
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper, AuthHttp } from 'angular2-jwt';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,7 @@ export class AuthService {
   jwtPayload: any;
 
   constructor(private http: Http, private jwtHelper: JwtHelper) {
+  //  this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
     this.carregarToken();
    }
 
@@ -65,6 +67,11 @@ export class AuthService {
      });
   }
 
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
   isAccessTokenInvalid() {
     const token = localStorage.getItem('token');
 
@@ -73,6 +80,16 @@ export class AuthService {
 
   temPermissao(permissao: string) {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
+
+  temQualquerPermissao(roles) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
    private armazenarToken(token: string) {

@@ -1,14 +1,18 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RotaService {
 
   rotasUrl = 'http://localhost:8080/rota';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) {
+  //  this.rotasUrl = `${environment.apiUrl}/rota`;
+  }
 
   listarTodos(): Promise<any> {
     const headers = new Headers();
