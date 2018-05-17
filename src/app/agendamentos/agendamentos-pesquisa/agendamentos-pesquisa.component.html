@@ -40,20 +40,31 @@
 
             <p-column field="status" header="Status" styleClass="col-status">
                 <ng-template let-agend="rowData" pTemplate="body">
-                    <span [style.color]="agend.status === 'CONFIRMADO' ? 'green' :
-                                              agend.status === 'CANCELADO' ? 'red' :
-                                              agend.status === 'SOLICITADO' ? 'blue' :
-                                              'black'">{{agend.status}}</span>
+                    <span>{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}
+                    <button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Detalhe"></button></span>
                 </ng-template>
             </p-column>
             <p-column styleClass="col-acao">
                 <ng-template pTemplate="body" let-agenda="rowData">
-                  <button pButton icon="fas fa-calendar-check" class="ui-button-info icon-calendar-check" pTooltip="Confirmar Agendamento" 
-                  tooltipPosition="top" [routerLink]="['/agenda', agenda.id]"></button>
-                  <button pButton icon="fas fa-calendar-times" class="ui-button-info icon-calendar-reject" pTooltip="Cancelar Agendamento" tooltipPosition="top"></button>
+                  <button pButton icon="fas fa-calendar-check" class="ui-button-info icon-calendar-check" pTooltip="Confirmar Agendamento"
+                  tooltipPosition="top" [routerLink]="['/agenda', agenda.id]" [disabled]="agenda.status === 'CONFIRMADO' || agenda.status === 'CANCELADO'"></button>
+                  <button pButton icon="fas fa-calendar-times" class="ui-button-info icon-calendar-reject" pTooltip="Cancelar Agendamento"
+                   tooltipPosition="top" [disabled]="agenda.status === 'CANCELADO'"></button>
                 </ng-template>
             </p-column>
           </p-dataTable>
+
+    </div>
+
+    <div>
+      <p-dialog header="Detalhe" [(visible)]="display" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70">
+        <div><label>SOLICITADO POR ...</label></div>
+        <div><label>NO DIA ...</label></div>
+            <p-footer>
+                <button type="button" pButton icon="fa-close" (click)="display=false" label="Fechar"></button>
+            </p-footer>
+    </p-dialog>
+
 
     </div>
 

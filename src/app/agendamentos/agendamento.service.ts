@@ -89,11 +89,15 @@ export class AgendamentoService {
       });
   }
 
-  private converterStringsParaDatas(agendamentos: Agendamento[]) {
+  converterStringsParaDatas(agendamentos: Agendamento[]) {
     for (const agendamento of agendamentos) {
       agendamento.data = moment(agendamento.data, 'YYYY-MM-DD').toDate();
     }
   }
 
+
+  converterStringParaData(data: any) {
+    return moment(data, 'YYYY-MM-DD').toDate();
+  }
 
 }
