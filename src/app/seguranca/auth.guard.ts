@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this.auth.isAccessTokenInvalid()) {
-      console.log('Navegação com acces token inválido. Obtendo novo access token...');
+      console.log('Navegação com access token inválido. Obtendo novo access token...');
 
       return this.auth.obterNovoAccessToken()
         .then(() => {

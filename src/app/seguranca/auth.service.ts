@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { JwtHelper, AuthHttp } from 'angular2-jwt';
+import { JwtHelper   } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -58,6 +58,8 @@ export class AuthService {
      .then(response => {
 
       this.armazenarToken(response.json().access_token);
+
+      console.log('Novo access token criado!');
 
       return Promise.resolve(null);
      })
