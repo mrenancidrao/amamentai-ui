@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AgendamentosRoutingModule } from './agendamentos-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -31,6 +32,7 @@ import { AppRoutingModule } from '../app-routing.module';
     TooltipModule,
     CalendarModule,
     DropdownModule,
+    DialogModule
   ],
   declarations: [
     AgendamentoCadastroComponent,

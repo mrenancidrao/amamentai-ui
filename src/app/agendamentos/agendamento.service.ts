@@ -8,12 +8,13 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 import { environment } from '../../environments/environment.prod';
+import { AuthService } from '../seguranca/auth.service';
 
 export class AgendamentoFiltro {
   doadoraNome: string;
   dataAgenda: Date;
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 10;
 }
 
 @Injectable()
@@ -21,7 +22,10 @@ export class AgendamentoService {
 
   agendamentosUrl: string;
 
-  constructor(private http: AuthHttp) {
+  constructor(
+      private http: AuthHttp,
+      private auth: AuthService
+    ) {
     this.agendamentosUrl = `${environment.apiUrl}`;
     // this.agendamentosUrl = `http://localhost:8080`;
   }
@@ -69,6 +73,15 @@ export class AgendamentoService {
       .then(() => null);
   }
 
+  confirmarAgendamento(agenda: Agendamento): Promise<Agendamento> {
+
+    console.log(JSON.stringify(this.auth.jwtPayload.id));
+   return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.id))
+     .toPromise()
+     .then(() => null);
+  
+  }
+
   adicionar(agendamento: Agendamento): Promise<Agendamento> {
 
     return this.http.post(`${this.agendamentosUrl}/agenda`, JSON.stringify(agendamento))
@@ -89,11 +102,15 @@ export class AgendamentoService {
       });
   }
 
-  private converterStringsParaDatas(agendamentos: Agendamento[]) {
+  converterStringsParaDatas(agendamentos: Agendamento[]) {
     for (const agendamento of agendamentos) {
       agendamento.data = moment(agendamento.data, 'YYYY-MM-DD').toDate();
     }
   }
 
+
+  converterStringParaData(data: any) {
+    return moment(data, 'YYYY-MM-DD').toDate();
+  }
 
 }

@@ -31,11 +31,12 @@ label{
 }
 
 .col-status{
-  width: 150px;
-  text-align: left;
+  width: 90;
+  text-align: center;
 }
 
 .col-acao{
   width: 90px;
   text-align: center;
 }
+

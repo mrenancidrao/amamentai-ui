@@ -13,6 +13,7 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthService } from './auth.service';
 import { AmamentaiHttp } from './amamentai-http';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -31,7 +32,9 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     InputTextModule,
     ButtonModule,
 
-    SegurancaRoutingModule
+    SegurancaRoutingModule,
+
+    ProgressSpinnerModule
   ],
   declarations: [LoginFormComponent],
   providers: [
