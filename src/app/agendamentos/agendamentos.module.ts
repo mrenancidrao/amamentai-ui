@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { AgendamentosRoutingModule } from './agendamentos-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { DialogModule } from 'primeng/dialog';
+import { DataListModule } from 'primeng/datalist';
 
 
 
@@ -32,7 +33,8 @@ import { DialogModule } from 'primeng/dialog';
     TooltipModule,
     CalendarModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    DataListModule
   ],
   declarations: [
     AgendamentoCadastroComponent,

@@ -5,6 +5,12 @@ body{
   color: #717679;
 }
 
+detalhe{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #53bacc;
+}
+
 a {
   color: #337ab7;
   text-decoration: none;

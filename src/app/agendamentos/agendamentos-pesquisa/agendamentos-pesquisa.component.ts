@@ -1,7 +1,7 @@
 import { Agendamento } from './../../core/model';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AgendamentoService, AgendamentoFiltro } from '../agendamento.service';
+import { AgendamentoService, AgendamentoFiltro, StatusAgendaFiltro } from '../agendamento.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ErrorHandlerService } from '../../core/error-handler.service';
@@ -16,9 +16,20 @@ import { AuthService } from '../../seguranca/auth.service';
 export class AgendamentosPesquisaComponent implements OnInit {
 
     totalRegistros = 0;
+
     filtro = new AgendamentoFiltro();
+
+    filtroStatusAgenda = new StatusAgendaFiltro();
+
     agendamentos = [];
-    display: boolean;
+
+    statusAgendamentos = [];
+
+    agendaSelecinada: Agendamento;
+
+    displayDialog: boolean;
+
+
 
     @ViewChild('tabela') tabela;
 
@@ -36,8 +47,14 @@ export class AgendamentosPesquisaComponent implements OnInit {
     }
 
     showDialog() {
-      this.display = true;
-  }
+      this.displayDialog = true;
+    }
+
+    onDialogHide() {
+      console.log('chegouaqui');
+      this.displayDialog = false;
+      this.statusAgendamentos = null;
+    }
 
     pesquisar(pagina = 0) {
         this.filtro.pagina = pagina;
@@ -49,6 +66,23 @@ export class AgendamentosPesquisaComponent implements OnInit {
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
+
+    pesquisarStatusAgenda(agendaId: any) {
+
+    console.log(`Recebendo paramentro de agenda id: ${agendaId}`);
+
+    if (agendaId != null) {
+      this.filtroStatusAgenda.agendaId = agendaId;
+    }
+      this.agendamentoService.pesquisarStatusAgenda(this.filtroStatusAgenda)
+          .then(resultado => {
+            console.log(resultado);
+            this.totalRegistros = resultado.total;
+            this.statusAgendamentos = resultado.statusAgendamentos;
+            this.showDialog();
+          })
+          .catch(erro => this.errorHandler.handle(erro));
+  }
 
     aoMudarPagina(event: LazyLoadEvent) {
       const pagina = event.first / event.rows;
@@ -80,11 +114,11 @@ export class AgendamentosPesquisaComponent implements OnInit {
       console.log(`Confirmando agendamento... de ${agenda.doadoraNome} passando pelo component após confirmação...`);
       this.agendamentoService.confirmarAgendamento(agenda)
       .then(() => {
-        //if (this.tabela.first === 0) {
+        // if (this.tabela.first === 0) {
           this.pesquisar();
-        //} else {
+        // } else {
         //  this.tabela.first = 0;
-        //}
+        // }
 
         this.toasty.success('Agendamento confirmado com sucesso');
 

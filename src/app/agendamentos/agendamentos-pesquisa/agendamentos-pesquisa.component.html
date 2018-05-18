@@ -30,7 +30,7 @@
         <p-dataTable [value]="agendamentos" [paginator]="true" [rows]="filtro.itensPorPagina"
               [responsive]="true" emptyMessage="Nenhum agendamento encontrado" [lazy]="true" [totalRecords]="totalRegistros"
               (onLazyLoad)="aoMudarPagina($event)">
-              
+
             <p-column header="Data" styleClass="col-data">
                 <ng-template let-agend="rowData" pTemplate="body">
                     <span>{{ agend.dataAgenda }}</span>
@@ -41,11 +41,11 @@
 
             <p-column field="status" header="Status" styleClass="col-status">
                 <ng-template let-agend="rowData" pTemplate="body">
-                  <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="showDialog()" class="ui-button-info"></button>
+                  <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend.id)" class="ui-button-info"></button>
                     <a href="javascript:;" (click)="showDialog()">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
                 </ng-template>
             </p-column>
-            
+
             <p-column header="Ação" styleClass="col-acao">
                 <ng-template pTemplate="body" let-agenda="rowData">
                   <button pButton icon="fas fa-calendar-check" class="ui-button-success icon-calendar-check" pTooltip="Confirmar Agendamento"
@@ -60,11 +60,45 @@
     </div>
 
     <div>
-      <p-dialog header="Detalhe" [(visible)]="display" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70">
-        <div><label>SOLICITADO POR ...</label></div>
-        <div><label>NO DIA ...</label></div>
+      <p-dialog header="Detalhe" [(visible)]="displayDialog" (onAfterHide)="onDialogHide()" [modal]="true" [responsive]="true" [width]="550" [minWidth]="400" [minY]="110">
+        <div>
+            <p-dataList [value]="statusAgendamentos" emptyMessage="Nenhum agendamento encontrado">
+              <p-header>Acompanhamento de Agendamento</p-header>
+                <ng-template let-ag pTemplate="item">
+                    <div class="ui-g ui-fluid ag-item detalhe">
+
+                        <div class="ui-g-12 ui-md-9 ag-details">
+                            <div class="ui-g">
+                                <div class="ui-g-3 ui-sm-6"><b>Data: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.data}}</div>
+
+                                <div class="ui-g-3 ui-sm-6"><b>Status: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.status.nome}}</div>
+
+                                <div class="ui-g-3 ui-sm-6"><b>Usuário: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.usuario.pessoa.nome}}</div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-dataList>
+        </div>
+        <!-- <div *ngFor="let sa of statusAgendamentos">
+          <div>
+            <b>{{ sa.status.nome }}</b> EM <b> {{ sa.data }}</b>
+          </div>
+
+          <div>
+          POR <b> {{ sa.usuario.pessoa.nome }}</b>
+          </div>
+        </div> -->
             <p-footer>
-                <button type="button" pButton icon="fa-close" (click)="display=false" label="Fechar"></button>
+                <button type="button" pButton icon="fa-close" (click)="onDialogHide()" label="Fechar"></button>
             </p-footer>
       </p-dialog>
     </div>
@@ -72,7 +106,7 @@
     <div class="ui-g-12">
       <a pButton label="Novo Agendamento" routerLink="/agenda/novo" class="ui-button-info"></a>
     </div>
-
+    {{statusAgendamentos}}
   </div>
 </div>
 

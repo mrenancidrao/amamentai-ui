@@ -17,6 +17,11 @@ export class AgendamentoFiltro {
   itensPorPagina = 10;
 }
 
+export class StatusAgendaFiltro {
+  agendaId: string;
+  statusId: string;
+}
+
 @Injectable()
 export class AgendamentoService {
 
@@ -60,6 +65,32 @@ export class AgendamentoService {
       });
   }
 
+  pesquisarStatusAgenda(filtro: StatusAgendaFiltro): Promise<any> {
+    const params = new URLSearchParams();
+
+    if (filtro.agendaId) {
+      params.set('agendaId', filtro.agendaId);
+    }
+
+    if (filtro.statusId) {
+      params.set('statusId', filtro.statusId);
+    }
+
+    return this.http.get(`${this.agendamentosUrl}/statusAgenda`, { search: params })
+     .toPromise()
+     .then(response => {
+       const responseJson = response.json();
+       const statusAgendamentos = responseJson.content;
+
+       const resultado = {
+         statusAgendamentos
+       };
+
+       return resultado;
+
+      });
+  }
+
   listarTodos(): Promise<any> {
     return this.http.get(`${this.agendamentosUrl}/vAgenda`)
       .toPromise()
@@ -76,10 +107,11 @@ export class AgendamentoService {
   confirmarAgendamento(agenda: Agendamento): Promise<Agendamento> {
 
     console.log(JSON.stringify(this.auth.jwtPayload.id));
-   return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.id))
-     .toPromise()
-     .then(() => null);
-  
+
+    return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.id))
+      .toPromise()
+      .then(() => null);
+
   }
 
   adicionar(agendamento: Agendamento): Promise<Agendamento> {
