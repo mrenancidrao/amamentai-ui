@@ -60,7 +60,7 @@
     </div>
 
     <div>
-      <p-dialog header="Detalhe" [(visible)]="displayDialog" (onAfterHide)="onDialogHide()" [modal]="true" [responsive]="true" [width]="550" [minWidth]="400" [minY]="110">
+      <p-dialog header="Detalhe" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="550" [minWidth]="400" [minY]="110">
         <div>
             <p-dataList [value]="statusAgendamentos" emptyMessage="Nenhum agendamento encontrado">
               <p-header>Acompanhamento de Agendamento</p-header>
@@ -77,26 +77,12 @@
 
                                 <div class="ui-g-3 ui-sm-6"><b>Usuário: </b></div>
                                 <div class="ui-g-9 ui-sm-6">{{ag.usuario.pessoa.nome}}</div>
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </ng-template>
-
             </p-dataList>
         </div>
-        <!-- <div *ngFor="let sa of statusAgendamentos">
-          <div>
-            <b>{{ sa.status.nome }}</b> EM <b> {{ sa.data }}</b>
-          </div>
-
-          <div>
-          POR <b> {{ sa.usuario.pessoa.nome }}</b>
-          </div>
-        </div> -->
             <p-footer>
                 <button type="button" pButton icon="fa-close" (click)="onDialogHide()" label="Fechar"></button>
             </p-footer>
@@ -106,7 +92,6 @@
     <div class="ui-g-12">
       <a pButton label="Novo Agendamento" routerLink="/agenda/novo" class="ui-button-info"></a>
     </div>
-    {{statusAgendamentos}}
   </div>
 </div>
 
