@@ -145,4 +145,8 @@ export class AgendamentoService {
     return moment(data, 'YYYY-MM-DD').toDate();
   }
 
+  converterFormatoDeData(data: any) {
+    return moment(data, 'YYYY-MM-DD').format('DD/MM/YYYY');
+  }
+
 }

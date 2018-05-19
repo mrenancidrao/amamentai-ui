@@ -25,9 +25,13 @@ export class AgendamentosPesquisaComponent implements OnInit {
 
     statusAgendamentos = [];
 
-    agendaSelecinada: Agendamento;
-
     displayDialog: boolean;
+
+    dataAgendamentoTitle: string;
+
+    nomeDoadoraTitle: string;
+
+    objetivoTitle: string;
 
 
 
@@ -67,12 +71,18 @@ export class AgendamentosPesquisaComponent implements OnInit {
             .catch(erro => this.errorHandler.handle(erro));
     }
 
-    pesquisarStatusAgenda(agendaId: any) {
+    pesquisarStatusAgenda(agenda: any) {
 
-    console.log(`Recebendo paramentro de agenda id: ${agendaId}`);
+      this.dataAgendamentoTitle = this.agendamentoService.converterFormatoDeData(agenda.dataAgenda);
 
-    if (agendaId != null) {
-      this.filtroStatusAgenda.agendaId = agendaId;
+      this.nomeDoadoraTitle = agenda.doadoraNome;
+
+      this.objetivoTitle = agenda.objetivo;
+
+    console.log(`Recebendo paramentro de agenda id: ${agenda.id}`);
+
+    if (agenda.id != null) {
+      this.filtroStatusAgenda.agendaId = agenda.id;
     }
       this.agendamentoService.pesquisarStatusAgenda(this.filtroStatusAgenda)
           .then(resultado => {

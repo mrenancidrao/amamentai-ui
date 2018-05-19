@@ -41,8 +41,8 @@
 
             <p-column field="status" header="Status" styleClass="col-status">
                 <ng-template let-agend="rowData" pTemplate="body">
-                  <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend.id)" class="ui-button-info"></button>
-                    <a href="javascript:;" (click)="showDialog()">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
+                  <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
+                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend.id)">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
                 </ng-template>
             </p-column>
 
@@ -63,7 +63,7 @@
       <p-dialog header="Detalhe" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="550" [minWidth]="400" [minY]="110">
         <div>
             <p-dataList [value]="statusAgendamentos" emptyMessage="Nenhum agendamento encontrado">
-              <p-header>Acompanhamento de Agendamento</p-header>
+              <p-header><b>{{ nomeDoadoraTitle }}</b> <br> Acompanhamento de Agendamento {{ dataAgendamentoTitle }} <br> <b>({{ objetivoTitle }})</b></p-header>
                 <ng-template let-ag pTemplate="item">
                     <div class="ui-g ui-fluid ag-item detalhe">
 
@@ -78,6 +78,10 @@
                                 <div class="ui-g-3 ui-sm-6"><b>Usuário: </b></div>
                                 <div class="ui-g-9 ui-sm-6">{{ag.usuario.pessoa.nome}}</div>
                             </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-9 ag-details">
+                          -------------
                         </div>
                     </div>
                 </ng-template>
