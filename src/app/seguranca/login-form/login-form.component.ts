@@ -22,7 +22,7 @@ export class LoginFormComponent {
   login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
     .then(() => {
-      this.router.navigate(['/agenda']);
+      this.router.navigate(['/pagina-inicial']);
     })
     .catch(erro => {
       this.errorHandler.handle(erro);

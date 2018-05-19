@@ -4,12 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AgendamentosPesquisaComponent } from './agendamentos-pesquisa/agendamentos-pesquisa.component';
 import { AgendamentoCadastroComponent } from './agendamento-cadastro/agendamento-cadastro.component';
+import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos.component';
 
 
 const routes: Routes = [
     {
       path: 'agenda',
       component: AgendamentosPesquisaComponent,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_PESQUISAR_AGENDA'] }
+    },
+    {
+      path: 'meusAgendamentos',
+      component: MeusAgendamentosComponent,
       canActivate: [AuthGuard],
       data: { roles: ['ROLE_PESQUISAR_AGENDA'] }
     },

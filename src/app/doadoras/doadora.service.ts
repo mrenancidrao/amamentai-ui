@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 
 export class DoadoraFiltro {
   nome: string;
+  pessoaId: string;
   pagina = 0;
   itensPorPagina = 5;
 }
@@ -31,14 +32,22 @@ export class DoadoraService {
 
     if (filtro.nome) {
       params.set('nome', filtro.nome);
+      console.log(`Filtro com nome`);
+    }
+
+    if (filtro.pessoaId) {
+      console.log(`Filtro com pessoaId`);
+      params.set('pessoaId', filtro.pessoaId);
     }
 
     return this.http.get(`${this.doadorasUrl}`, { search: params })
      .toPromise()
      .then(response => {
+
        const responseJson = response.json();
        const doadoras = responseJson.content;
 
+       console.log(doadoras);
        const resultado = {
          doadoras,
          total: responseJson.totalElements

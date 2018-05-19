@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DoadoraMeuCadastroComponent } from './doadora-meu-cadastro/doadora-meu-cadastro.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [
     DoadoraCadastroComponent,
-    DoadorasPesquisaComponent
+    DoadorasPesquisaComponent,
+    DoadoraMeuCadastroComponent
   ],
 
   exports: [

@@ -9,11 +9,17 @@ import { DoadoraCadastroComponent } from './doadoras/doadora-cadastro/doadora-ca
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { AgendamentosRoutingModule } from './agendamentos/agendamentos-routing.module';
 import { SegurancaRoutingModule } from './seguranca/seguranca-routing.module';
+import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
+import { MitosVerdadesComponent } from './mitos-verdades/mitos-verdades.component';
+import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.component';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: 'agenda', pathMatch: 'full' },
+    { path: '', redirectTo: 'pagina-inicial', pathMatch: 'full' },
+    { path: 'pagina-inicial', component: PaginaInicialComponent},
     { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
+    { path: 'mitos-verdades', component: MitosVerdadesComponent},
+    { path: 'como-retira-leite', component: ComoRetiraLeiteComponent},
     { path: 'nao-autorizado', component: NaoAutorizadoComponent},
     { path: '**', redirectTo: 'pagina-nao-encontrada'}
   ];

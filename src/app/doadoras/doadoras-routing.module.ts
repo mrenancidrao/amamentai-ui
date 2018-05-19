@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { DoadorasPesquisaComponent } from './doadoras-pesquisa/doadoras-pesquisa.component';
 import { DoadoraCadastroComponent } from './doadora-cadastro/doadora-cadastro.component';
+import { DoadoraMeuCadastroComponent } from './doadora-meu-cadastro/doadora-meu-cadastro.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,12 @@ const routes: Routes = [
       component: DoadorasPesquisaComponent,
       canActivate: [AuthGuard],
       data: { roles: ['ROLE_PESQUISAR_DOADORA'] }
+    },
+    {
+      path: 'meuCadastro',
+      component: DoadoraMeuCadastroComponent,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_CADASTRAR_DOADORA'] }
     },
     {
       path: 'doadora/novo',

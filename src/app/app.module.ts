@@ -25,10 +25,16 @@ import { DoadoraCadastroComponent } from './doadoras/doadora-cadastro/doadora-ca
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
+import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
+import { MitosVerdadesComponent } from './mitos-verdades/mitos-verdades.component';
+import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PaginaInicialComponent,
+    MitosVerdadesComponent,
+    ComoRetiraLeiteComponent,
   ],
   imports: [
     BrowserAnimationsModule,

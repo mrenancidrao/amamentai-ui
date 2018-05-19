@@ -16,6 +16,7 @@ import { AgendamentosRoutingModule } from './agendamentos-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { DialogModule } from 'primeng/dialog';
 import { DataListModule } from 'primeng/datalist';
+import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos.component';
 
 
 
@@ -38,7 +39,8 @@ import { DataListModule } from 'primeng/datalist';
   ],
   declarations: [
     AgendamentoCadastroComponent,
-    AgendamentosPesquisaComponent
+    AgendamentosPesquisaComponent,
+    MeusAgendamentosComponent
 
   ],
   exports: []

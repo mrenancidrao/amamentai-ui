@@ -1,0 +1,102 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>
+          Meus Dados
+        </h1>
+      </div>
+
+
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" #nome="ngModel" [(ngModel)]="doadora.pessoa.nome" required minlength="4"/>
+
+       <app-message [control]="nome" error="required" text="Informe um nome."></app-message>
+
+       <app-message [control]="nome" error="minlength" text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres."></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Data de Nascimento</label>
+          <p-calendar dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2008" name="dataNascimento" [readonlyInput]="true" [(ngModel)]="doadora.pessoa.dataNascimento" #dataNasc="ngModel" required></p-calendar>
+
+          <app-message [control]="dataNasc" error="required" text="Informe data de nascimento"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Data do Parto</label>
+          <p-calendar dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="2014:2018" name="dataParto" [readonlyInput]="true" [(ngModel)]="doadora.dataParto" #dataParto="ngModel" required></p-calendar>
+
+          <app-message [control]="dataParto" error="required" text="Informe data do parto"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome do Bebê </label>
+        <input type="text" pInputText name="nomeBebe" [(ngModel)]="doadora.nomeBebe" #nomeBebe="ngModel" required minlength="4"/>
+
+       <app-message [control]="nomeBebe" error="required" text="Informe o nome do(a) filho(a) da doadora."></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Logradouro</label>
+        <input type="text" pInputText name="logradouro" [(ngModel)]="doadora.pessoa.endereco.logradouro" #logradouro="ngModel" required/>
+
+        <app-message [control]="logradouro" error="required" text="Informe o logradouro"></app-message>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Número</label>
+          <input type="text" pInputText name="numero" [(ngModel)]="doadora.pessoa.endereco.numero" #numero="ngModel" required/>
+
+          <app-message [control]="numero" error="required" text="Informe o número"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Complemento</label>
+        <input type="text" pInputText name="complemento" [(ngModel)]="doadora.pessoa.endereco.complemento"/>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Cidade</label>
+        <p-dropdown [options]="cidades" [filter]="true" name="cidade" [autoWidth]="false" placeholder="Selecione uma cidade" [(ngModel)]="doadora.pessoa.endereco.bairro.cidade.id" #cidade="ngModel" required></p-dropdown>
+
+        <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+          <label>Bairro</label>
+          <p-dropdown [options]="bairros" [filter]="true" [autoWidth]="false" name="bairro" placeholder="Escolha um bairro" [(ngModel)]="doadora.pessoa.endereco.bairro.id" #bairro="ngModel" required></p-dropdown>
+
+          <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>E-mail</label>
+        <input type="text" pInputText name="email" ngModel #email="ngModel" required/>
+
+        <app-message [control]="email" error="required" text="Informe o email"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Senha</label>
+        <input type="password" pInputText name="senha" ngModel #senha="ngModel" required/>
+
+        <app-message [control]="senha" error="required" text="Informe a senha"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+          <label>Confirmar Senha</label>
+          <input type="password" pInputText name="senhaConfirmacao" ngModel #senhaConfirmacao="ngModel" required/>
+
+          <app-message [control]="senhaConfirmacao" error="required" text="Confirme a senha digitada"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar"></button>
+      </div>
+    </div>
+  </form>
+</div>

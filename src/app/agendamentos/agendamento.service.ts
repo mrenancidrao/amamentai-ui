@@ -13,6 +13,7 @@ import { AuthService } from '../seguranca/auth.service';
 export class AgendamentoFiltro {
   doadoraNome: string;
   dataAgenda: Date;
+  pessoaId: string;
   pagina = 0;
   itensPorPagina = 10;
 }
@@ -47,6 +48,10 @@ export class AgendamentoService {
 
     if (filtro.dataAgenda) {
       params.set('dataAgenda', moment(filtro.dataAgenda).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.pessoaId) {
+      params.set('pessoaId', filtro.pessoaId);
     }
 
     return this.http.get(`${this.agendamentosUrl}/vAgenda`, { search: params })

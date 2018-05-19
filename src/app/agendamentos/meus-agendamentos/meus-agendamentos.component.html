@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+    <div class="ui-g-12">
+      <h1>Meus Agendamentos</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Doadora</label>
+      <input pInputText type="text" name="doadoraNome" [(ngModel)]="filtro.doadoraNome">
+    </div>
+
+    <div class="ui-g-12">
+      <label style="display:block">Data</label>
+      <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgenda"
+        [(ngModel)]="filtro.dataAgenda"></p-calendar>
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton class="ui-button-info" type="submit" label="Pesquisar"></button>
+    </div>
+
+    </form>
+  </div>
+
+  <div class="ui-g-12">
+    <div class="ui-g-12">
+        <p-dataTable [value]="agendamentos" [paginator]="true" [rows]="filtro.itensPorPagina"
+              [responsive]="true" emptyMessage="Nenhum agendamento encontrado" [lazy]="true" [totalRecords]="totalRegistros"
+              (onLazyLoad)="aoMudarPagina($event)">
+
+            <p-column header="Data" styleClass="col-data">
+                <ng-template let-agend="rowData" pTemplate="body">
+                    <span>{{ agend.dataAgenda }}</span>
+                </ng-template></p-column>
+            <p-column field="bancoNome" header="Banco de Leite" styleClass="col-banco"></p-column>
+            <p-column field="objetivo" header="Objetivo"></p-column>
+            <p-column field="rota" header="Rota"></p-column>
+
+            <p-column field="status" header="Status" styleClass="col-status">
+                <ng-template let-agend="rowData" pTemplate="body">
+                  <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
+                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Ação" styleClass="col-acao">
+                <ng-template pTemplate="body" let-agenda="rowData">
+                  <button pButton icon="fas fa-calendar-check" class="ui-button-success icon-calendar-check" pTooltip="Confirmar Agendamento"
+                  tooltipPosition="top" (click)="confirmarAgendamento(agenda)" [disabled]="agenda.status === 'CONFIRMADO' || agenda.status === 'CANCELADO'"></button>
+
+                  <button pButton icon="fas fa-calendar-times" class="ui-button-warning icon-calendar-reject" pTooltip="Cancelar Agendamento"
+                   tooltipPosition="top" [disabled]="agenda.status === 'CANCELADO'"></button>
+                </ng-template>
+            </p-column>
+          </p-dataTable>
+
+    </div>
+
+    <div>
+      <p-dialog header="Detalhe" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [autoAlign]="true" [width]="550" [minWidth]="150" [minY]="110">
+        <div>
+            <p-dataList [value]="statusAgendamentos" emptyMessage="Nenhum agendamento encontrado">
+              <p-header><b>{{ nomeDoadoraTitle }}</b> <br> Acompanhamento de Agendamento {{ dataAgendamentoTitle }} <br> <b>({{ objetivoTitle }})</b></p-header>
+                <ng-template let-ag pTemplate="item">
+                    <div class="ui-g ui-fluid ag-item detalhe">
+
+                        <div class="ui-g-12 ui-md-9 ag-details">
+                            <div class="ui-g">
+                                <div class="ui-g-3 ui-sm-6"><b>Data: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.data}}</div>
+
+                                <div class="ui-g-3 ui-sm-6"><b>Status: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.status.nome}}</div>
+
+                                <div class="ui-g-3 ui-sm-6"><b>Usuário: </b></div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.usuario.pessoa.nome}}</div>
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-9 ag-details">
+                          -------------
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataList>
+        </div>
+            <p-footer>
+                <button type="button" pButton icon="fa-close" (click)="onDialogHide()" label="Fechar"></button>
+            </p-footer>
+      </p-dialog>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo Agendamento" routerLink="/agenda/novo" class="ui-button-info"></a>
+    </div>
+  </div>
+</div>
+
