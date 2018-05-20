@@ -3,7 +3,9 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
+        <a href="javascript:;" class="navbar-toggle" [hidden]="exibindoMenu" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
+        <!-- GAMBIARRA PARA NAVBAR SUPERIOR NÃO SUMIR AO ESCONDER O TOGGLER -->
+        <a href="javascript:;" class="navbar-toggle-hidden" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
       </div>
     </div>
   </div>
@@ -13,7 +15,7 @@
     <div class="container">
       <div class="ui-g">
         <div class="ui-g-2">
-          <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
+          <a href="javascript:;"  class="navbar-toggle" style="margin-left: 150px" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
         </div>
       </div>
     </div>

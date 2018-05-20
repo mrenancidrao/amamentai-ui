@@ -7,6 +7,10 @@
   color: #feffa9;
 }
 
+.navbar-toggle-hidden {
+  color: #53bacc;
+}
+
 .navbar-menu {
   position: fixed;
 
