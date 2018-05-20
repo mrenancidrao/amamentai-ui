@@ -22,9 +22,9 @@ const routes: Routes = [
     },
     {
       path: 'doadora/novo',
-      component: DoadoraCadastroComponent,
-      canActivate: [AuthGuard],
-      data: { roles: ['ROLE_CADASTRAR_DOADORA'] }
+      component: DoadoraCadastroComponent
+      // canActivate: [AuthGuard],
+      // data: { roles: ['ROLE_CADASTRAR_DOADORA'] }
     },
     {
       path: 'doadora/:id',

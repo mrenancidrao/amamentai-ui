@@ -9,12 +9,11 @@ export class BairroService {
   bairrosUrl: string;
 
   constructor(private http: AuthHttp) {
-  this.bairrosUrl = `${environment.apiUrl}/bairro`;
+    this.bairrosUrl = `${environment.apiUrl}/bairro`;
    }
 
   listarTodos(): Promise<any> {
-
-
+    
     return this.http.get(`${this.bairrosUrl}`)
       .toPromise()
       .then(response => response.json());

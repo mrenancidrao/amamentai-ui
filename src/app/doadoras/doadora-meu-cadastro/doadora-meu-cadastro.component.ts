@@ -60,8 +60,8 @@ export class DoadoraMeuCadastroComponent implements OnInit {
       //this.carregarDoadora();
     }
 
-    this.carregarBairros();
-    this.carregarCidades();
+    //this.carregarBairros();
+    //this.carregarCidades();
   }
 
   get editando() {
