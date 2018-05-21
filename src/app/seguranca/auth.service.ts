@@ -86,6 +86,10 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  logado(permissao: string) {
+    return this.jwtPayload;
+  }
+
   temQualquerPermissao(roles) {
     for (const role of roles) {
       if (this.temPermissao(role)) {

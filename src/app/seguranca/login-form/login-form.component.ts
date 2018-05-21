@@ -22,7 +22,14 @@ export class LoginFormComponent {
   login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
     .then(() => {
-      this.router.navigate(['/pagina-inicial']);
+      if (this.auth.jwtPayload.tipoUserId.id == 1){
+        this.router.navigate(['/meusAgendamentos']);
+      }
+      
+      if (this.auth.jwtPayload.tipoUserId.id == 2){
+        this.router.navigate(['/agenda']);
+      }
+
     })
     .catch(erro => {
       this.errorHandler.handle(erro);

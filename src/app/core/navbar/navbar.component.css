@@ -37,6 +37,13 @@
   padding: 15px;
 }
 
+.navbar-tipoUsuario {
+
+  border-bottom: 1px solid #feffa9;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 15px;
+}
 
 .navbar-menuitem {
   padding: 15px;

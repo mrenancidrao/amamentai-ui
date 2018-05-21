@@ -14,7 +14,7 @@ import { ErrorHandlerService } from '../error-handler.service';
 export class NavbarComponent implements OnInit {
 
 
-  exibindoMenu = false;
+  escondeMenu = false;
 
   constructor(
     public auth: AuthService,
