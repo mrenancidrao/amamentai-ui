@@ -21,16 +21,17 @@
     </div>
 
     <li class="navbar-usuario">{{ auth.jwtPayload?.nome }}</li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/meuCadastro">Meus Dados</a></li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/doadora">Doadoras</a></li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/meusAgendamentos">Meus Agendamentos</a></li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/agenda">Agendamentos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/pagina-inicial">Página Inicial</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_MEU_CADASTRO')"><a routerLink="/meuCadastro">Meus Dados</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_DOADORA_MENU')"><a routerLink="/doadora">Doadoras</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_MEUS_AGENDAMENTOS')"><a routerLink="/meusAgendamentos">Meus Agendamentos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_AGENDA_MENU')"><a routerLink="/agenda">Agendamentos</a></li>
     <!-- <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="#">Rotas</a></li> -->
     <!-- <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="#">Como Doar</a></li> -->
     <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/como-retira-leite">Como Retirar o Leite</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/mitos-verdades">Mitos e Verdades</a></li>
     <!-- <li class="navbar-menuitem"><a routerLink="#">Relatórios</a></li> -->
-    <li class="navbar-menuitem" ><a href="javascript:;" (click)="logout()">Logout</a></li>
+    <li class="navbar-menuitem" *ngIf="auth.temPermissao('ROLE_CADASTRAR_AGENDA')"><a href="javascript:;" (click)="logout()">Logout</a></li>
   </ul>
 
 </nav>

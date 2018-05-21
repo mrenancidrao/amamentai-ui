@@ -46,6 +46,7 @@ export class DoadoraMeuCadastroComponent implements OnInit {
     //const idDoadora = this.route.snapshot.params['id'];
 
     if (this.auth.jwtPayload.pessoaId) {
+      
       console.log(`Pessoa logada: ${this.auth.jwtPayload.pessoaId}`);
       
       this.doadoraFiltro.pessoaId = this.auth.jwtPayload.pessoaId;
@@ -60,8 +61,8 @@ export class DoadoraMeuCadastroComponent implements OnInit {
       //this.carregarDoadora();
     }
 
-    //this.carregarBairros();
-    //this.carregarCidades();
+    this.carregarBairros();
+    this.carregarCidades();
   }
 
   get editando() {
