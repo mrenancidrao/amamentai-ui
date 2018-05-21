@@ -1,3 +1,4 @@
+import { DoadoraMeuCadastroComponent } from './doadora-meu-cadastro/doadora-meu-cadastro.component';
 import { CoreModule } from './../core/core.module';
 import { SharedModule } from './../shared/shared.module';
 
@@ -13,7 +14,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DoadoraMeuCadastroComponent } from './doadora-meu-cadastro/doadora-meu-cadastro.component';
+
 
 
 @NgModule({
