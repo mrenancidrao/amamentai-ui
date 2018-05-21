@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <li class="navbar-tipoUsuario">{{ auth.jwtPayload?.tipoUserId.nome }}</li>
+    <!-- <li class="navbar-tipoUsuario">{{ auth.jwtPayload?.tipoUserId.nome }}</li> -->
     <li class="navbar-usuario" *ngIf="auth.logado()">{{ auth.jwtPayload?.nome }}</li>
     <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="!auth.logado()"><a routerLink="/pagina-inicial">Página Inicial</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_MEU_CADASTRO')"><a routerLink="/meuCadastro">Meus Dados</a></li>
