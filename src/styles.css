@@ -36,6 +36,11 @@ label{
   text-align: left;
 }
 
+.col-doadora{
+  width: 300px;
+  text-align: left;
+}
+
 .col-data{
   width: 120px;
   text-align: center;
@@ -43,7 +48,7 @@ label{
 
 .col-status{
   width: 90;
-  text-align: center;
+  text-align: left;
 }
 
 .col-acao{

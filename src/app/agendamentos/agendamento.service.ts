@@ -141,7 +141,7 @@ export class AgendamentoService {
 
   converterStringsParaDatas(agendamentos: Agendamento[]) {
     for (const agendamento of agendamentos) {
-      agendamento.data = moment(agendamento.data, 'YYYY-MM-DD').toDate();
+      agendamento.data = this.converterStringParaData(agendamento.data);
     }
   }
 
