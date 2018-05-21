@@ -1,5 +1,5 @@
 import { AuthHttp } from 'angular2-jwt';
-import { Headers, URLSearchParams } from '@angular/http';
+import { Headers, URLSearchParams, Http } from '@angular/http';
 
 import { Injectable } from '@angular/core';
 
@@ -20,7 +20,7 @@ export class DoadoraService {
 
   doadorasUrl: string;
 
-  constructor(private http: AuthHttp) {
+  constructor(private http: Http) {
   this.doadorasUrl = `${environment.apiUrl}/doadora`;
   }
 
