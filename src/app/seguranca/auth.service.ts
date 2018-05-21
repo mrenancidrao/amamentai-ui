@@ -86,7 +86,7 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
-  logado(permissao: string) {
+  logado() {
     return this.jwtPayload;
   }
 
