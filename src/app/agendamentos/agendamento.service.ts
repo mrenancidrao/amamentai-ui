@@ -116,9 +116,9 @@ export class AgendamentoService {
 
   confirmarAgendamento(agenda: Agendamento): Promise<Agendamento> {
 
-    console.log(JSON.stringify(this.auth.jwtPayload.id));
+    console.log(JSON.stringify(this.auth.jwtPayload.userId));
 
-    return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.id))
+    return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.userId))
       .toPromise()
       .then(() => null);
 
@@ -146,7 +146,7 @@ export class AgendamentoService {
 
   converterStringsParaDatas(agendamentos: Agendamento[]) {
     for (const agendamento of agendamentos) {
-      agendamento.data = moment(agendamento.data, 'YYYY-MM-DD').toDate();
+      agendamento.data = this.converterStringParaData(agendamento.data);
     }
   }
 

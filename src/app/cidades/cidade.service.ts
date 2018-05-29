@@ -1,4 +1,3 @@
-import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment.prod';
@@ -8,7 +7,7 @@ export class CidadeService {
 
   cidadesUrl: string;
 
-  constructor(private http: AuthHttp) {
+  constructor(private http: Http) {
   this.cidadesUrl = `${environment.apiUrl}/cidade`;
   }
 

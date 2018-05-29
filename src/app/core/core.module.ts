@@ -1,3 +1,4 @@
+import { RelatorioService } from './../relatorios/relatorio.service';
 import { BancoService } from './../bancos/banco.service';
 import { RotaService } from './../rotas/rota.service';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -69,6 +70,7 @@ registerLocaleData(localePt);
     RotaService,
     BairroService,
     CidadeService,
+    RelatorioService,
 
     ConfirmationService,
     JwtHelper,

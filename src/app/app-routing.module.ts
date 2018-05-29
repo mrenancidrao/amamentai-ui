@@ -12,6 +12,7 @@ import { SegurancaRoutingModule } from './seguranca/seguranca-routing.module';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { MitosVerdadesComponent } from './mitos-verdades/mitos-verdades.component';
 import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.component';
+import { RelatorioComponent } from './relatorios/relatorio/relatorio.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'mitos-verdades', component: MitosVerdadesComponent},
     { path: 'como-retira-leite', component: ComoRetiraLeiteComponent},
     { path: 'nao-autorizado', component: NaoAutorizadoComponent},
+    { path: 'relatorio', component: RelatorioComponent },
     { path: '**', redirectTo: 'pagina-nao-encontrada'}
   ];
   @NgModule({

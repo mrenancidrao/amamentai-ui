@@ -36,6 +36,11 @@ label{
   text-align: left;
 }
 
+.col-doadora{
+  width: 300px;
+  text-align: left;
+}
+
 .col-data{
   width: 120px;
   text-align: center;
@@ -43,11 +48,28 @@ label{
 
 .col-status{
   width: 90;
-  text-align: center;
+  text-align: left;
 }
 
 .col-acao{
   width: 90px;
   text-align: center;
+}
+
+@keyframes ui-progress-spinner-color {
+  100%,
+  0% {
+      stroke: #337ab7;
+  }
+  40% {
+      stroke: #53bacc;
+  }
+  66% {
+      stroke: #337ab7;
+  }
+  80%,
+  90% {
+      stroke: #53bacc;
+  }
 }
 

@@ -40,14 +40,18 @@
                 <ng-template let-agend="rowData" pTemplate="body">
                     <span>{{ agend.dataAgenda | date: 'dd/MM/y' }}</span>
                 </ng-template></p-column>
-            <p-column field="doadoraNome" header="Doadora"></p-column>
+            <p-column field="doadoraNome" header="Doadora" styleClass="col-doadora"></p-column>
             <p-column field="objetivo" header="Objetivo"></p-column>
             <p-column field="rota" header="Rota"></p-column>
 
-            <p-column field="status" header="Status" styleClass="col-status">
+            <p-column field="status" header="Status">
                 <ng-template let-agend="rowData" pTemplate="body">
                   <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
+<<<<<<< HEAD
                     <a href="javascript:;" (click)="pesquisarStatusAgenda(agend.id)">{{ agend.status }}</a>
+=======
+                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
+>>>>>>> 08da816f47326df14e0419da6455f5e5692fa09d
                 </ng-template>
             </p-column>
 
