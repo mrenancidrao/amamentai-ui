@@ -4,7 +4,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {TabViewModule} from 'primeng/tabview';
@@ -12,7 +12,6 @@ import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
 import {DataTableModule} from 'primeng/components/datatable/datatable';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
-import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 
 import { AppComponent } from './app.component';
@@ -28,6 +27,7 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { MitosVerdadesComponent } from './mitos-verdades/mitos-verdades.component';
 import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.component';
+
 
 @NgModule({
   declarations: [

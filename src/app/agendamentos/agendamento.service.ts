@@ -14,6 +14,7 @@ export class AgendamentoFiltro {
   doadoraNome: string;
   dataAgenda: Date;
   pessoaId: string;
+  status: string;
   pagina = 0;
   itensPorPagina = 10;
 }
@@ -52,6 +53,10 @@ export class AgendamentoService {
 
     if (filtro.pessoaId) {
       params.set('pessoaId', filtro.pessoaId);
+    }
+
+    if (filtro.status) {
+      params.set('status', filtro.status);
     }
 
     return this.http.get(`${this.agendamentosUrl}/vAgenda`, { search: params })

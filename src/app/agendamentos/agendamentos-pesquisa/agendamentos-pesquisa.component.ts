@@ -33,6 +33,14 @@ export class AgendamentosPesquisaComponent implements OnInit {
 
     objetivoTitle: string;
 
+    statusSelect = [
+      {label:'TODOS', value:''},
+      {label:'CANCELADO', value:'CANCELADO'},
+      {label:'CONCLUÍDO', value:'CONCLUÍDO'},
+      {label:'CONFIRMADO', value:'CONFIRMADO'},
+      {label:'SOLICITADO', value:'SOLICITADO'}
+    ];
+
 
 
     @ViewChild('tabela') tabela;

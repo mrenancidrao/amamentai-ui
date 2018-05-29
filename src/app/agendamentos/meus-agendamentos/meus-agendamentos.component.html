@@ -12,6 +12,11 @@
       <input pInputText type="text" name="doadoraNome" [(ngModel)]="filtro.doadoraNome">
     </div>
 
+    <div class="ui-g-12 ui-fluid">
+        <label>Status</label>
+        <p-dropdown [options]="statusSelect" name="status" [autoWidth]="false" placeholder="Pesquisar por status" [(ngModel)]="filtro.status"></p-dropdown>
+    </div>
+
     <div class="ui-g-12">
       <label style="display:block">Data</label>
       <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataAgenda"
@@ -42,14 +47,14 @@
             <p-column field="status" header="Status" styleClass="col-status">
                 <ng-template let-agend="rowData" pTemplate="body">
                   <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
-                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
+                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ agend.status }}</a>
                 </ng-template>
             </p-column>
 
             <p-column header="Ação" styleClass="col-acao">
                 <ng-template pTemplate="body" let-agenda="rowData">
                   <button pButton icon="fas fa-calendar-check" class="ui-button-success icon-calendar-check" pTooltip="Confirmar Agendamento"
-                  tooltipPosition="top" (click)="confirmarAgendamento(agenda)" [disabled]="agenda.status === 'CONFIRMADO' || agenda.status === 'CANCELADO'"></button>
+                  tooltipPosition="top" (click)="confirmarAgendamento(agenda)" [disabled]="agenda.status === 'CONFIRMADO' || agenda.status === 'CANCELADO' || agenda.status === 'CONCLUÍDO'"></button>
 
                   <button pButton icon="fas fa-calendar-times" class="ui-button-warning icon-calendar-reject" pTooltip="Cancelar Agendamento"
                    tooltipPosition="top" [disabled]="agenda.status === 'CANCELADO'"></button>

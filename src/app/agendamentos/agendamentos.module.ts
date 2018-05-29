@@ -1,6 +1,5 @@
 import { CoreModule } from './../core/core.module';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { AgendamentosPesquisaComponent } from './agendamentos-pesquisa/agendamentos-pesquisa.component';
@@ -32,7 +31,6 @@ import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos
     InputTextModule,
     DataTableModule,
     TooltipModule,
-    CalendarModule,
     DropdownModule,
     DialogModule,
     DataListModule
