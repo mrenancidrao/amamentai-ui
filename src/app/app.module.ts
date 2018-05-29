@@ -1,3 +1,4 @@
+import { RelatoriosModule } from './relatorios/relatorios.module';
 import { CoreModule } from './core/core.module';
 import { DoadorasModule } from './doadoras/doadoras.module';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
@@ -34,7 +35,7 @@ import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.
     AppComponent,
     PaginaInicialComponent,
     MitosVerdadesComponent,
-    ComoRetiraLeiteComponent,
+    ComoRetiraLeiteComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,6 +46,7 @@ import { ComoRetiraLeiteComponent } from './como-retira-leite/como-retira-leite.
     AgendamentosModule,
     DoadorasModule,
     SegurancaModule,
+    RelatoriosModule,
     CoreModule
 
   ],
