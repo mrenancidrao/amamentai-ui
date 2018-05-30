@@ -9,7 +9,7 @@
 
     <div class="ui-g-12 ui-fluid">
       <label>Doadora</label>
-      <input pInputText type="text" name="doadoraNome" [(ngModel)]="filtro.doadoraNome">
+      <input pInputText type="text" name="doadoraNome" placeholder="Pesquisar por doadora" [(ngModel)]="filtro.doadoraNome">
     </div>
 
     <div class="ui-g-12 ui-fluid">
@@ -47,11 +47,7 @@
             <p-column field="status" header="Status">
                 <ng-template let-agend="rowData" pTemplate="body">
                   <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
-<<<<<<< HEAD
                     <a href="javascript:;" (click)="pesquisarStatusAgenda(agend.id)">{{ agend.status }}</a>
-=======
-                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ dataPassou(agend.dataAgenda) && agend.status === 'CONFIRMADO' ? 'CONCLUÍDO' : agend.status }}</a>
->>>>>>> 08da816f47326df14e0419da6455f5e5692fa09d
                 </ng-template>
             </p-column>
 

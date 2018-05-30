@@ -23,12 +23,12 @@ export class RelatorioService {
 
   doadoras() {
 
-    this.http.get(`${this.relatoriosUrl}/doadoras`, {
+    this.http.get(`${this.relatoriosUrl}/agenda`, {
       responseType: ResponseContentType.Blob
       }).subscribe(
         (response) => { // download file
             const blob = new Blob([response.blob()], {type: 'application/pdf'});
-            const filename = 'file.pdf';
+            const filename = 'doadoras.pdf';
             saveAs(blob, filename);
         });
 
