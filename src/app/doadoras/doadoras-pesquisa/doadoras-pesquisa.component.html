@@ -26,7 +26,10 @@
               emptyMessage="Nenhuma doadora encontrada" [lazy]="true" [totalRecords]="totalRegistros"
               (onLazyLoad)="aoMudarPagina($event)" #tabela>
           <p-column field="pessoa.nome" header="Nome"></p-column>
-          <p-column field="dataParto" header="Data do Parto"></p-column>
+          <p-column header="Data do parto" styleClass="col-data">
+            <ng-template let-agend="rowData" pTemplate="body">
+                <span>{{ agend.dataParto | date: 'dd/MM/y' }}</span>
+            </ng-template></p-column>
           <p-column field="nomeBebe" header="Nome do Bebê"></p-column>
           <p-column field="pessoa.endereco.logradouro" header="Logradouro"></p-column>
           <p-column field="pessoa.endereco.bairro.nome" header="Bairro"></p-column>
