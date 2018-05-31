@@ -15,7 +15,7 @@ export class RelatorioService {
 
   relatoriosUrl: string;
 
-  dataString: string;
+  dataAgenda: string;
 
   constructor(private http: AuthHttp) {
 
@@ -25,12 +25,13 @@ export class RelatorioService {
 
 
   geraAgendaPDF(dataAgenda: Date) {
+    const params = new URLSearchParams();
 
-    this.dataString = this.converterDataParaString(dataAgenda);
-    console.log(`Entrou no service relatorios ${this.dataString}`);
+    this.dataAgenda = this.converterDataParaString(dataAgenda);
+    console.log(`Entrou no service relatorios ${this.dataAgenda}`);
 
-    this.http.get(`${this.relatoriosUrl}/agenda/${this.dataString}`, {
-      responseType: ResponseContentType.Blob, search: dataAgenda
+    this.http.post(`${this.relatoriosUrl}/agenda`, this.dataAgenda, {
+      responseType: ResponseContentType.Blob, search: params
       }).subscribe(
         (response) => { // download file
             const blob = new Blob([response.blob()], {type: 'application/pdf'});
