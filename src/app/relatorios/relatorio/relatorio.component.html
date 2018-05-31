@@ -3,14 +3,14 @@
 <div class="container" style="max-width: 400px; margin: auto">
   <div class="ui-g">
   
-  <div class="ui-g-8 ui-md-8 ui-fluid">
+  <div class="ui-g-12 ui-md-8 ui-fluid">
     <label>Data</label>
     <p-calendar dateFormat="dd/mm/yy" name="dataAgenda" [readonlyInput]="true" placeholder="Escolha uma data" #dataAgend="ngModel" [(ngModel)]="dataAgenda"></p-calendar>
     
     <app-message [control]="dataAgend" error="required" text="Informe uma data"></app-message>
   </div>
   
-    <div class="ui-g-8 ui-md-8 ui-fluid">
+    <div class="ui-g-12 ui-md-8 ui-fluid">
       <a pButton label="Gerar PDF" (click)="geraRelatorioAgenda()"></a>
     </div>
   </div>
