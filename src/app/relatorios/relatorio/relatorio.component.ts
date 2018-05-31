@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatorioComponent implements OnInit {
 
+  dataAgenda: Date;
+
   constructor(
     private relatorioService: RelatorioService
   ) { }
@@ -15,9 +17,9 @@ export class RelatorioComponent implements OnInit {
   ngOnInit() {
   }
 
-  geraRelatorioDoadoras() {
-    console.log('Entrou no gera relatorios');
-    this.relatorioService.doadoras();
+  geraRelatorioAgenda() {
+    console.log(`Entrou no gera relatorios ${this.dataAgenda}`);
+    this.relatorioService.geraAgendaPDF(this.dataAgenda);
   }
 
 }
