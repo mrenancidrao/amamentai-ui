@@ -7,7 +7,7 @@
         </h1>
       </div>
 
-      
+
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
@@ -75,27 +75,27 @@
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>E-mail</label>
-        <input type="text" pInputText name="email" ngModel #email="ngModel" required/>
+        <input type="text" pInputText name="email" ngModel #email="ngModel"/>
 
         <app-message [control]="email" error="required" text="Informe o email"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Senha</label>
-        <input type="password" pInputText name="senha" ngModel #senha="ngModel" required/>
+        <input type="password" pInputText name="senha" ngModel #senha="ngModel"/>
 
         <app-message [control]="senha" error="required" text="Informe a senha"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
           <label>Confirmar Senha</label>
-          <input type="password" pInputText name="senhaConfirmacao" ngModel #senhaConfirmacao="ngModel" required/>
+          <input type="password" pInputText name="senhaConfirmacao" ngModel #senhaConfirmacao="ngModel"/>
 
           <app-message [control]="senhaConfirmacao" error="required" text="Confirme a senha digitada"></app-message>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="!f.valid"></button>
         <button pButton type="button" class="ui-button-info" label="Novo" (click)="novo(f)"></button>
         <a routerLink="/doadora">Voltar para a pesquisa</a>
       </div>

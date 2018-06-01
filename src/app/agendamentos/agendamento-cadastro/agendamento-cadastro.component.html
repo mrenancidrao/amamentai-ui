@@ -19,14 +19,14 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
           <label>Data</label>
-          <p-calendar dateFormat="dd/mm/yy" name="data" [readonlyInput]="true" placeholder="Escolha uma data disponível" #dataAgend="ngModel" [(ngModel)]="agendamento.data"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" name="data" [readonlyInput]="true" placeholder="Escolha uma data disponível" #dataAgend="ngModel" [(ngModel)]="agendamento.data" required></p-calendar>
 
           <app-message [control]="dataAgend" error="required" text="Informe data do agendamento"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Rota</label>
-        <p-dropdown [options]="rotas" name="rota" [autoWidth]="false" placeholder="Selecione a rota" [(ngModel)]="agendamento.rota.id" #rota></p-dropdown>
+        <p-dropdown [options]="rotas" name="rota" [autoWidth]="false" placeholder="Selecione a rota" [(ngModel)]="agendamento.rota.id" #rota required></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
@@ -35,7 +35,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="!f.valid"></button>
         <button pButton class="ui-button-info" label="Novo"></button>
         <a [routerLink] = "auth.jwtPayload.tipoUserId.id === 2 ? '/agenda' : '/meusAgendamentos'" >Voltar para a pesquisa</a>
       </div>

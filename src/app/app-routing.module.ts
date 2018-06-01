@@ -1,3 +1,4 @@
+import { AuthGuard } from './seguranca/auth.guard';
 import { DoadorasRoutingModule } from './doadoras/doadoras-routing.module';
 import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,7 +23,12 @@ const routes: Routes = [
     { path: 'mitos-verdades', component: MitosVerdadesComponent},
     { path: 'como-retira-leite', component: ComoRetiraLeiteComponent},
     { path: 'nao-autorizado', component: NaoAutorizadoComponent},
-    { path: 'relatorio', component: RelatorioComponent },
+    {
+      path: 'relatorio',
+      component: RelatorioComponent ,
+      canActivate: [AuthGuard],
+      data: { roles: ['ROLE_GERAR_RELATORIO_ROTA']
+    },
     { path: '**', redirectTo: 'pagina-nao-encontrada'}
   ];
   @NgModule({
