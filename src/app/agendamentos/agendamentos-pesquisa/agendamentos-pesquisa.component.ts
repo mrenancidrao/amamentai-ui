@@ -43,11 +43,11 @@ export class AgendamentosPesquisaComponent implements OnInit {
     motivoSelecionado: number;
 
     statusSelect = [
-      {label:'TODOS', value:''},
-      {label:'CANCELADO', value:'CANCELADO'},
-      {label:'CONCLUÍDO', value:'CONCLUÍDO'},
-      {label:'CONFIRMADO', value:'CONFIRMADO'},
-      {label:'SOLICITADO', value:'SOLICITADO'}
+      {label: 'TODOS', value: ''},
+      {label: 'CANCELADO', value: 'CANCELADO'},
+      {label: 'CONCLUÍDO', value: 'CONCLUÍDO'},
+      {label: 'CONFIRMADO', value: 'CONFIRMADO'},
+      {label: 'SOLICITADO', value: 'SOLICITADO'}
     ];
 
     motivos = [];

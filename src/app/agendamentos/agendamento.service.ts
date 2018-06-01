@@ -128,7 +128,7 @@ export class AgendamentoService {
 
   cancelarAgendamento(agenda: Agendamento, motivo: number): Promise<Agendamento> {
 
-    let params = new MotivoStatusAgenda();
+    const params = new MotivoStatusAgenda();
 
     params.statusAgenda.usuario.id = this.auth.jwtPayload.userId;
     params.statusAgenda.agenda.id = agenda.id;

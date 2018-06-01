@@ -37,7 +37,7 @@
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
         <button pButton class="ui-button-info" label="Novo"></button>
-        <a routerLink="/agenda">Voltar para a pesquisa</a>
+        <a [routerLink] = "auth.jwtPayload.tipoUserId.id === 2 ? '/agenda' : '/meusAgendamentos'" >Voltar para a pesquisa</a>
       </div>
     </div>
   </form>

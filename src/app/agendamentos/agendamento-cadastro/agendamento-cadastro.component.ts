@@ -1,9 +1,11 @@
+import { Usuario } from './../../core/model';
+import { AuthService } from './../../seguranca/auth.service';
 import { RotaService } from './../../rotas/rota.service';
 import { Component, OnInit } from '@angular/core';
 import { ObjetivoService } from '../../objetivos/objetivo.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { errorHandler } from '@angular/platform-browser/src/browser';
-import { DoadoraService } from '../../doadoras/doadora.service';
+import { DoadoraService, DoadoraFiltro } from '../../doadoras/doadora.service';
 import { Agendamento } from '../../core/model';
 import { AgendamentoService } from '../agendamento.service';
 import { ToastyService } from 'ng2-toasty';
@@ -18,6 +20,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AgendamentoCadastroComponent implements OnInit {
 
+  doadoraFiltro = new DoadoraFiltro();
   bancos = [];
   doadoras = [];
   rotas = [];
@@ -25,6 +28,7 @@ export class AgendamentoCadastroComponent implements OnInit {
   agendamento = new Agendamento();
 
   constructor(
+    private auth: AuthService,
     private bancoService: BancoService,
     private objetivoService: ObjetivoService,
     private doadoraService: DoadoraService,
@@ -88,6 +92,26 @@ export class AgendamentoCadastroComponent implements OnInit {
   }
 
   carregarDoadoras() {
+
+    if (this.auth.jwtPayload.tipoUserId.id === 1) {
+
+      console.log(`${this.auth.jwtPayload.tipoUserId.id}  É doadora pessoa: ${this.auth.jwtPayload.pessoaId}`);
+
+      this.doadoraFiltro.pessoaId = this.auth.jwtPayload.pessoaId;
+
+      return this.doadoraService.pesquisar(this.doadoraFiltro)
+      .then(retorno => {
+        this.doadoras = retorno.doadoras.map(d => ({ label: d.pessoa.nome + ' (' + d.nomeBebe + ')'
+                                                  + ' - Data do parto: ' + d.dataParto
+                                                  + ' - Bairro: ' + d.pessoa.endereco.bairro.nome
+                                                  , value: d.id }));
+      })
+      .catch(erro => this.errorHandle.handle(erro));
+
+    } else {
+
+    console.log(`${this.auth.jwtPayload.tipoUserId.id} É enfermeira pessoa: ${this.auth.jwtPayload.pessoaId}`);
+
     return this.doadoraService.listarTodas()
       .then(doadoras => {
         this.doadoras = doadoras.map(d => ({ label: d.pessoa.nome + ' (' + d.nomeBebe + ')'
@@ -96,8 +120,8 @@ export class AgendamentoCadastroComponent implements OnInit {
                                                   , value: d.id }));
       })
       .catch(erro => this.errorHandle.handle(erro));
+    }
   }
-
   carregarObjetivos() {
     return this.objetivoService.listarTodos()
       .then(objetivos => {

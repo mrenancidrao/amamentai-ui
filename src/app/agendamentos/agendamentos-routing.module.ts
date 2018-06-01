@@ -12,13 +12,13 @@ const routes: Routes = [
       path: 'agenda',
       component: AgendamentosPesquisaComponent,
       canActivate: [AuthGuard],
-      data: { roles: ['ROLE_PESQUISAR_AGENDA'] }
+      data: { roles: ['ROLE_MENU_GLOBAL_AGENDA'] }
     },
     {
       path: 'meusAgendamentos',
       component: MeusAgendamentosComponent,
       canActivate: [AuthGuard],
-      data: { roles: ['ROLE_PESQUISAR_AGENDA'] }
+      data: { roles: ['ROLE_MENU_MINHA_AGENDA'] }
     },
     {
       path: 'agenda/novo',

@@ -42,11 +42,11 @@ export class MeusAgendamentosComponent implements OnInit {
   motivoSelecionado: number;
 
   statusSelect = [
-    {label:'TODOS', value:''},
-    {label:'CANCELADO', value:'CANCELADO'},
-    {label:'CONCLUÍDO', value:'CONCLUÍDO'},
-    {label:'CONFIRMADO', value:'CONFIRMADO'},
-    {label:'SOLICITADO', value:'SOLICITADO'}
+    {label: 'TODOS', value: ''},
+    {label: 'CANCELADO', value: 'CANCELADO'},
+    {label: 'CONCLUÍDO', value: 'CONCLUÍDO'},
+    {label: 'CONFIRMADO', value: 'CONFIRMADO'},
+    {label: 'SOLICITADO', value: 'SOLICITADO'}
   ];
 
   motivos = [];
@@ -68,11 +68,11 @@ export class MeusAgendamentosComponent implements OnInit {
     this.title.setTitle('Amamentai - Meus Agendamentos');
 
     if (this.auth.jwtPayload.pessoaId) {
-    
+
       console.log(`Entrou no jwtPayload`);
 
       this.filtro.pessoaId = this.auth.jwtPayload.pessoaId;
-      
+
       this.pesquisar();
 
     }
@@ -168,8 +168,6 @@ export class MeusAgendamentosComponent implements OnInit {
   }
 
   cancelarAgendamento() {
-
-    console.log(`Cancelando agendamento... de ${this.agendaSelecionada} motivo ${this.motivoSelecionado} passando pelo component após confirmação...`);
     this.agendamentoService.cancelarAgendamento(this.agendaSelecionada, this.motivoSelecionado)
     .then(() => {
       this.pesquisar();
