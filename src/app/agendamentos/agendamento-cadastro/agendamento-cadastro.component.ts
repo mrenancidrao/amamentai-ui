@@ -28,7 +28,7 @@ export class AgendamentoCadastroComponent implements OnInit {
   agendamento = new Agendamento();
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private bancoService: BancoService,
     private objetivoService: ObjetivoService,
     private doadoraService: DoadoraService,
