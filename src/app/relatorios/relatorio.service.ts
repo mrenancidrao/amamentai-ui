@@ -25,13 +25,12 @@ export class RelatorioService {
 
 
   geraAgendaPDF(dataAgenda: Date) {
-    const params = new URLSearchParams();
 
     this.dataAgenda = this.converterDataParaString(dataAgenda);
     console.log(`Entrou no service relatorios ${this.dataAgenda}`);
 
     this.http.post(`${this.relatoriosUrl}/agenda`, this.dataAgenda, {
-      responseType: ResponseContentType.Blob, search: params
+      responseType: ResponseContentType.Blob
       }).subscribe(
         (response) => { // download file
             const blob = new Blob([response.blob()], {type: 'application/pdf'});

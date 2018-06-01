@@ -47,7 +47,7 @@
             <p-column field="status" header="Status">
                 <ng-template let-agend="rowData" pTemplate="body">
                   <button pButton icon="fas fa-info-circle" pTooltip="Detalhar informações de agendamento" tooltipPosition="top" (click)="pesquisarStatusAgenda(agend)" class="ui-button-info"></button>
-                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend.id)">{{ agend.status }}</a>
+                    <a href="javascript:;" (click)="pesquisarStatusAgenda(agend)">{{ agend.status }}</a>
                 </ng-template>
             </p-column>
 
@@ -57,7 +57,7 @@
                   tooltipPosition="top" (click)="confirmarAgendamento(agenda)" [disabled]="agenda.status === 'CONFIRMADO' || agenda.status === 'CANCELADO' || agenda.status === 'CONCLUÍDO'"></button>
 
                   <button pButton icon="fas fa-calendar-times" class="ui-button-warning icon-calendar-reject" pTooltip="Cancelar Agendamento"
-                   tooltipPosition="top" [disabled]="agenda.status === 'CANCELADO'"></button>
+                   tooltipPosition="top" (click)="obterAgendaSelecionada(agenda)" [disabled]="agenda.status === 'CANCELADO'"></button>
                 </ng-template>
             </p-column>
           </p-dataTable>
@@ -78,7 +78,7 @@
                                 <div class="ui-g-9 ui-sm-6">{{ag.data | date: 'dd/MM/y' }}</div>
 
                                 <div class="ui-g-3 ui-sm-6"><b>Status: </b></div>
-                                <div class="ui-g-9 ui-sm-6">{{ag.status.nome}}</div>
+                                <div class="ui-g-9 ui-sm-6">{{ag.status.nome}} {{ag.motivo != null ? ' (' + ag.motivo.nome + ')' : ''}}</div>
 
                                 <div class="ui-g-3 ui-sm-6"><b>Usuário: </b></div>
                                 <div class="ui-g-9 ui-sm-6">{{ag.usuario.pessoa.nome}}</div>
@@ -97,6 +97,20 @@
             </p-footer>
       </p-dialog>
     </div>
+
+
+    <div>
+      <p-dialog header="Motivo Cancelamento" [(visible)]="displayDialogCancel" [modal]="true" [responsive]="true" [width]="550" [minWidth]="400" [minY]="110">
+        <div>
+          <p-dropdown [options]="motivos" appendTo="body"  name="motivo" [style]="{width: '100%'}" [autoWidth]="false" placeholder="Escolha um Motivo" [(ngModel)]="motivoSelecionado"></p-dropdown>
+        </div>
+            <p-footer>
+                <button type="button" pButton icon="fa-check" (click)="cancelarAgendamento()" label="Ok"></button>
+                <button type="button" pButton icon="fa-close" (click)="onDialogCancelHide()" label="Fechar"></button>
+            </p-footer>
+      </p-dialog>
+    </div>
+
 
     <div class="ui-g-12">
       <a pButton label="Novo Agendamento" routerLink="/agenda/novo" class="ui-button-info"></a>

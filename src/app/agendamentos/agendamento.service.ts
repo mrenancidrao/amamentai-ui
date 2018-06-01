@@ -1,5 +1,5 @@
 import { AuthHttp } from 'angular2-jwt';
-import { Agendamento } from './../core/model';
+import { Agendamento, StatusAgenda, MotivoStatusAgenda, Motivo } from './../core/model';
 
 import { Headers, URLSearchParams } from '@angular/http';
 
@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 import { environment } from '../../environments/environment.prod';
 import { AuthService } from '../seguranca/auth.service';
+import { AgendamentosRoutingModule } from './agendamentos-routing.module';
 
 export class AgendamentoFiltro {
   doadoraNome: string;
@@ -22,6 +23,7 @@ export class AgendamentoFiltro {
 export class StatusAgendaFiltro {
   agendaId: string;
   statusId: string;
+  usuarioId: string;
 }
 
 @Injectable()
@@ -119,6 +121,22 @@ export class AgendamentoService {
     console.log(JSON.stringify(this.auth.jwtPayload.userId));
 
     return this.http.put(`${this.agendamentosUrl}/agenda/${agenda.id}/confirmar`, JSON.stringify(this.auth.jwtPayload.userId))
+      .toPromise()
+      .then(() => null);
+
+  }
+
+  cancelarAgendamento(agenda: Agendamento, motivo: number): Promise<Agendamento> {
+
+    let params = new MotivoStatusAgenda();
+
+    params.statusAgenda.usuario.id = this.auth.jwtPayload.userId;
+    params.statusAgenda.agenda.id = agenda.id;
+    params.motivo.id = motivo;
+
+    console.log(JSON.stringify(this.auth.jwtPayload.userId));
+
+    return this.http.post(`${this.agendamentosUrl}/agenda/cancelar`, params)
       .toPromise()
       .then(() => null);
 

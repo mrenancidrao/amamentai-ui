@@ -1,4 +1,4 @@
-import { Agendamento } from './../../core/model';
+import { Agendamento, Motivo } from './../../core/model';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgendamentoService, AgendamentoFiltro, StatusAgendaFiltro } from '../agendamento.service';
@@ -7,6 +7,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { AuthService } from '../../seguranca/auth.service';
+import { MotivoService } from '../../motivos/motivo.service';
 
 @Component({
   selector: 'app-agendamentos-pesquisa',
@@ -16,6 +17,8 @@ import { AuthService } from '../../seguranca/auth.service';
 export class AgendamentosPesquisaComponent implements OnInit {
 
     totalRegistros = 0;
+
+    motivo = new Motivo();
 
     filtro = new AgendamentoFiltro();
 
@@ -27,11 +30,17 @@ export class AgendamentosPesquisaComponent implements OnInit {
 
     displayDialog: boolean;
 
+    displayDialogCancel: boolean;
+
     dataAgendamentoTitle: string;
 
     nomeDoadoraTitle: string;
 
     objetivoTitle: string;
+
+    agendaSelecionada = new Agendamento();
+
+    motivoSelecionado: number;
 
     statusSelect = [
       {label:'TODOS', value:''},
@@ -40,6 +49,8 @@ export class AgendamentosPesquisaComponent implements OnInit {
       {label:'CONFIRMADO', value:'CONFIRMADO'},
       {label:'SOLICITADO', value:'SOLICITADO'}
     ];
+
+    motivos = [];
 
 
 
@@ -51,21 +62,32 @@ export class AgendamentosPesquisaComponent implements OnInit {
       private errorHandler: ErrorHandlerService,
       private toasty: ToastyService,
       private title: Title,
-      private confirmation: ConfirmationService
+      private confirmation: ConfirmationService,
+      private motivoService: MotivoService
     ) {}
 
     ngOnInit() {
       this.title.setTitle('Amamentai - Pesquisa de Agendamentos');
+      this.carregarMotivos();
     }
 
     showDialog() {
       this.displayDialog = true;
     }
 
+    showDialogCancel() {
+      this.displayDialogCancel = true;
+    }
+
     onDialogHide() {
       console.log('chegouaqui');
       this.displayDialog = false;
       this.statusAgendamentos = null;
+    }
+
+
+    onDialogCancelHide() {
+      this.displayDialogCancel = false;
     }
 
     pesquisar(pagina = 0) {
@@ -128,6 +150,24 @@ export class AgendamentosPesquisaComponent implements OnInit {
       });
     }
 
+    obterAgendaSelecionada(agenda: any) {
+      this.agendaSelecionada = agenda;
+      this.showDialogCancel();
+    }
+
+    cancelarAgendamento() {
+
+      console.log(`Cancelando agendamento... de ${this.agendaSelecionada} motivo ${this.motivoSelecionado} passando pelo component após confirmação...`);
+      this.agendamentoService.cancelarAgendamento(this.agendaSelecionada, this.motivoSelecionado)
+      .then(() => {
+        this.pesquisar();
+        this.toasty.success('Agendamento cancelado com sucesso');
+        this.onDialogCancelHide();
+        this.motivoSelecionado = null;
+
+      }).catch(erro => this.errorHandler.handle(erro));
+    }
+
     confirmar(agenda: any) {
       console.log(`Confirmando agendamento... de ${agenda.doadoraNome} passando pelo component após confirmação...`);
       this.agendamentoService.confirmarAgendamento(agenda)
@@ -141,6 +181,14 @@ export class AgendamentosPesquisaComponent implements OnInit {
         this.toasty.success('Agendamento confirmado com sucesso');
 
       }).catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarMotivos() {
+    return this.motivoService.listarTodos()
+      .then(motivos => {
+        this.motivos = motivos.map(m => ({ label: m.nome, value: m.id }));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

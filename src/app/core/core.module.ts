@@ -30,6 +30,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 import { ButtonModule } from 'primeng/components/button/button';
 import { AuthService } from '../seguranca/auth.service';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { MotivoService } from '../motivos/motivo.service';
 
 registerLocaleData(localePt);
 
@@ -71,6 +72,7 @@ registerLocaleData(localePt);
     BairroService,
     CidadeService,
     RelatorioService,
+    MotivoService,
 
     ConfirmationService,
     JwtHelper,

@@ -7,6 +7,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { AuthService } from '../../seguranca/auth.service';
+import { MotivoService } from '../../motivos/motivo.service';
 
 @Component({
   selector: 'app-meus-agendamentos',
@@ -28,11 +29,17 @@ export class MeusAgendamentosComponent implements OnInit {
 
   displayDialog: boolean;
 
+  displayDialogCancel: boolean;
+
   dataAgendamentoTitle: string;
 
   nomeDoadoraTitle: string;
 
   objetivoTitle: string;
+
+  agendaSelecionada = new Agendamento();
+
+  motivoSelecionado: number;
 
   statusSelect = [
     {label:'TODOS', value:''},
@@ -42,6 +49,7 @@ export class MeusAgendamentosComponent implements OnInit {
     {label:'SOLICITADO', value:'SOLICITADO'}
   ];
 
+  motivos = [];
 
 
   @ViewChild('tabela') tabela;
@@ -52,7 +60,8 @@ export class MeusAgendamentosComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
     private title: Title,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private motivoService: MotivoService
   ) {}
 
   ngOnInit() {
@@ -68,16 +77,27 @@ export class MeusAgendamentosComponent implements OnInit {
 
     }
 
+    this.carregarMotivos();
+
   }
 
   showDialog() {
     this.displayDialog = true;
   }
 
+  showDialogCancel() {
+    this.displayDialogCancel = true;
+  }
+
   onDialogHide() {
     console.log('chegouaqui');
     this.displayDialog = false;
     this.statusAgendamentos = null;
+  }
+
+
+  onDialogCancelHide() {
+    this.displayDialogCancel = false;
   }
 
   pesquisar(pagina = 0) {
@@ -142,6 +162,24 @@ export class MeusAgendamentosComponent implements OnInit {
     });
   }
 
+  obterAgendaSelecionada(agenda: any) {
+    this.agendaSelecionada = agenda;
+    this.showDialogCancel();
+  }
+
+  cancelarAgendamento() {
+
+    console.log(`Cancelando agendamento... de ${this.agendaSelecionada} motivo ${this.motivoSelecionado} passando pelo component após confirmação...`);
+    this.agendamentoService.cancelarAgendamento(this.agendaSelecionada, this.motivoSelecionado)
+    .then(() => {
+      this.pesquisar();
+      this.toasty.success('Agendamento cancelado com sucesso');
+      this.onDialogCancelHide();
+      this.motivoSelecionado = null;
+
+    }).catch(erro => this.errorHandler.handle(erro));
+  }
+
   confirmar(agenda: any) {
     console.log(`Confirmando agendamento... de ${agenda.doadoraNome} passando pelo component após confirmação...`);
     this.agendamentoService.confirmarAgendamento(agenda)
@@ -155,6 +193,14 @@ export class MeusAgendamentosComponent implements OnInit {
       this.toasty.success('Agendamento confirmado com sucesso');
 
     }).catch(erro => this.errorHandler.handle(erro));
+}
+
+carregarMotivos() {
+  return this.motivoService.listarTodos()
+    .then(motivos => {
+      this.motivos = motivos.map(m => ({ label: m.nome, value: m.id }));
+    })
+    .catch(erro => this.errorHandler.handle(erro));
 }
 
 

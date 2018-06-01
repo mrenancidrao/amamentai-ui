@@ -1,3 +1,9 @@
+export class Usuario {
+  
+	id: number;
+	
+}
+
 export class Estado {
   id: number;
   nome: string;
@@ -49,6 +55,11 @@ export class Rota {
   id: number;
 }
 
+export class Motivo {
+  id: number;
+  nome: string;
+}
+
 export class Agendamento {
   id: number;
   data: Date;
@@ -56,4 +67,19 @@ export class Agendamento {
   banco = new Banco();
   objetivo = new Objetivo();
   rota = new Rota();
+}
+
+export class StatusAgenda {
+  id: number;
+  data: Date;
+  observacao: string;
+  agenda = new Agendamento();
+  usuario = new Usuario();
+  motivo = new Motivo();
+}
+
+export class MotivoStatusAgenda {
+  id: number;
+  motivo = new Motivo();
+  statusAgenda = new StatusAgenda();
 }
