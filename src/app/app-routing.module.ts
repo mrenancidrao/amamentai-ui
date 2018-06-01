@@ -25,9 +25,9 @@ const routes: Routes = [
     { path: 'nao-autorizado', component: NaoAutorizadoComponent},
     {
       path: 'relatorio',
-      component: RelatorioComponent ,
+      component: RelatorioComponent,
       canActivate: [AuthGuard],
-      data: { roles: ['ROLE_GERAR_RELATORIO_ROTA']
+      data: { roles: ['ROLE_GERAR_RELATORIO_ROTA'] }
     },
     { path: '**', redirectTo: 'pagina-nao-encontrada'}
   ];
