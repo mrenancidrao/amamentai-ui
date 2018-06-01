@@ -38,7 +38,7 @@
 
             <p-column header="Data" styleClass="col-data">
                 <ng-template let-agend="rowData" pTemplate="body">
-                    <span>{{ agend.dataAgenda }}</span>
+                    <span>{{ agend.dataAgenda | date: 'dd/MM/y' }}</span>
                 </ng-template></p-column>
             <p-column field="bancoNome" header="Banco de Leite" styleClass="col-banco"></p-column>
             <p-column field="objetivo" header="Objetivo"></p-column>
